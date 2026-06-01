@@ -1,0 +1,146 @@
+/* WEBSITE TYPES */
+.tcard {
+  background: var(--bg);
+  border-radius: var(--r);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: var(--tr);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.tcard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  border-radius: var(--r) var(--r) 0 0;
+}
+.tcard:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--sl);
+  border-color: transparent;
+}
+.tcard:hover::before {
+  transform: scaleX(1);
+}
+.tsky::before {
+  background: linear-gradient(90deg, var(--p), var(--teal));
+}
+.tco::before {
+  background: linear-gradient(90deg, var(--cor), var(--amb));
+}
+.tvio::before {
+  background: linear-gradient(90deg, var(--vio), var(--ind));
+}
+.ttl::before {
+  background: linear-gradient(90deg, var(--teal), var(--grn));
+}
+.tind::before {
+  background: linear-gradient(90deg, var(--ind), var(--vio));
+}
+.tamb::before {
+  background: linear-gradient(90deg, var(--amb), var(--cor));
+}
+.timg {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+.timg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: var(--tr);
+  display: block;
+}
+.tcard:hover .timg img {
+  transform: scale(1.05);
+}
+.tbadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+.tbody {
+  padding: 22px 20px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.tico {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  margin-top: -38px;
+  position: relative;
+  z-index: 2;
+  border: 3px solid var(--bg);
+  box-shadow: var(--ss);
+  flex-shrink: 0;
+}
+.tico svg {
+  width: 22px;
+  height: 22px;
+  color: #fff;
+}
+.tbody h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 7px;
+}
+.tbody p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+.ttags {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.tt {
+  font-size: 0.69rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--bg3);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.mlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--p);
+  transition: var(--tr);
+}
+.mlink svg {
+  width: 16px;
+  height: 16px;
+}
+.mlink:hover {
+  gap: 10px;
+}

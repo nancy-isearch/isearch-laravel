@@ -24,38 +24,38 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
-            $pages = Page::where('status', 1)->get();
-            $menuCategories = Category::where('is_active', 1)->whereHas('products', function ($q) {
-                $q->where('status', 1);
-            })->get();
+            // $pages = Page::where('status', 1)->get();
+            // $menuCategories = Category::where('is_active', 1)->whereHas('products', function ($q) {
+            //     $q->where('status', 1);
+            // })->get();
 
-            $menuCollections = Collection::where('is_active', 1)->get();
+            // $menuCollections = Collection::where('is_active', 1)->get();
 
-            $map = [
-                'home' => 'home',
-                'about' => 'about',
-                'contact' => 'contact',
-                'products' => 'product_list',
-                'categories' => 'categories',
-                'category.products' => 'categories',
-                'collections' => 'collections',
-                'collection.products' => 'collections',
-            ];
-            $seo = null;
+            // $map = [
+            //     'home' => 'home',
+            //     'about' => 'about',
+            //     'contact' => 'contact',
+            //     'products' => 'product_list',
+            //     'categories' => 'categories',
+            //     'category.products' => 'categories',
+            //     'collections' => 'collections',
+            //     'collection.products' => 'collections',
+            // ];
+            // $seo = null;
 
             
-            if(request()->route()) {
-                $routeName = request()->route()->getName();
-                $pageKey = $map[$routeName] ?? null;
+            // if(request()->route()) {
+            //     $routeName = request()->route()->getName();
+            //     $pageKey = $map[$routeName] ?? null;
                 
-                if ($pageKey) {
-                    $seo = \App\Models\SeoSetting::where('page_key', $pageKey)->first();
-                    $view->with('seo', $seo);
-                }
-            }
+            //     if ($pageKey) {
+            //         $seo = \App\Models\SeoSetting::where('page_key', $pageKey)->first();
+            //         $view->with('seo', $seo);
+            //     }
+            // }
             
             
-            $view->with('pages', $pages)->with('menuCategories', $menuCategories)->with('menuCollections', $menuCollections)->with('seo', $seo);
+            // $view->with('pages', $pages)->with('menuCategories', $menuCategories)->with('menuCollections', $menuCollections)->with('seo', $seo);
         });
     }
 }

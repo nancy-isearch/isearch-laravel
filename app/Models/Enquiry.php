@@ -7,21 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Enquiry extends Model
 {
     protected $fillable = [
-        'full_name',
+        'name',
+        'mobile',
+        'dial_code',
         'email',
-        'phone',
-        'country_city',
-        // 'preferred_time',
-        'message',
-        'status',
-        'product_id',
-        'preferred_size',
-        'purpose',
-        'preferred_finish'
+        'url',
+        'service',
+        'requirement',
+        'ip_address',
+        'user_agent',
     ];
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
 }

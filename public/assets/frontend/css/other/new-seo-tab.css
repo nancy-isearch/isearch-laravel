@@ -1,0 +1,82 @@
+/* SEO Tabs Section */
+.seo-tab-section .seo-tabs-wrapper {
+  position: relative;
+}
+.seo-tab-section .seo-tabs {
+  position: sticky;
+  top: 20px;
+  background: #f7f9ff;
+  border-radius: 14px;
+  padding: 20px;
+}
+.seo-tab-section .seo-tab {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.seo-tab-section .seo-tab:hover {
+  background: #e6ecff;
+  color: var(--primary-color);
+}
+.seo-tab-section .seo-tab.active {
+  background: #eef2ff;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.seo-tab-section .seo-tab-footer {
+  text-align: center;
+  margin-top: 30px;
+}
+.seo-tab-section .seo-tab-footer img {
+  max-width: 120px;
+}
+.seo-tab-section .seo-tab-content {
+  padding-left: 40px;
+}
+.seo-tab-section .tab-pane {
+  display: none;
+}
+.seo-tab-section .tab-pane.active {
+  display: block;
+}
+.seo-tab-section .tab-pane h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+.seo-tab-section .tab-pane p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* responsive */
+@media (max-width: 992px) {
+  .seo-tab-section .seo-tab-footer {
+    display: none;
+  }
+  .seo-tab-section .seo-tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .seo-tab-section .seo-tab-content {
+    padding: 16px;
+  }
+  .seo-tab-section .seo-tabs-wrapper {
+    padding: 0;
+  }
+  .seo-tab-section .seo-tabs {
+    position: static;
+    margin-bottom: 30px;
+  }
+  .seo-tab-section .seo-tab {
+    text-align: center;
+  }
+  .seo-tab-section .seo-content-one {
+    padding: 0px;
+  }
+}

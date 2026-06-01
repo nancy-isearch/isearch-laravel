@@ -35,17 +35,17 @@
                     </a>
                 </div>
                 <div class="dash-stat-body">
-                    <div class="dash-stat-value">{{ $totalEnquiries }}</div>
+                    <div class="dash-stat-value"></div>
                     <div class="dash-stat-label">Total Enquiries</div>
                 </div>
                 <div class="dash-stat-footer">
                     <span class="dash-stat-pill dash-stat-pill--success">
                         <i class="lni lni-checkmark-circle"></i>
-                        Completed: {{ $completedEnquiries }}
+                        Completed: 
                     </span>
                     <span class="dash-stat-pill dash-stat-pill--danger">
                         <i class="lni lni-timer"></i>
-                        Pending: {{ $pendingEnquiries }}
+                        Pending: 
                     </span>
                 </div>
             </div>
@@ -61,17 +61,17 @@
                     </a>
                 </div>
                 <div class="dash-stat-body">
-                    <div class="dash-stat-value">{{ $totalProducts }}</div>
+                    <div class="dash-stat-value"></div>
                     <div class="dash-stat-label">Total Products</div>
                 </div>
                 <div class="dash-stat-footer">
                     <span class="dash-stat-pill dash-stat-pill--success">
                         <i class="lni lni-checkmark-circle"></i>
-                        Active: {{ $activeProducts }}
+                        Active: 
                     </span>
                     <span class="dash-stat-pill dash-stat-pill--danger">
                         <i class="lni lni-ban"></i>
-                        Inactive: {{ $inactiveProducts }}
+                        Inactive: 
                     </span>
                 </div>
             </div>
@@ -87,17 +87,17 @@
                     </a>
                 </div>
                 <div class="dash-stat-body">
-                    <div class="dash-stat-value">{{ $totalCategories }}</div>
+                    <div class="dash-stat-value"></div>
                     <div class="dash-stat-label">Total Categories</div>
                 </div>
                 <div class="dash-stat-footer">
                     <span class="dash-stat-pill dash-stat-pill--success">
                         <i class="lni lni-checkmark-circle"></i>
-                        Active: {{ $activeCategories }}
+                        Active: 
                     </span>
                     <span class="dash-stat-pill dash-stat-pill--danger">
                         <i class="lni lni-ban"></i>
-                        Inactive: {{ $inactiveCategories }}
+                        Inactive: 
                     </span>
                 </div>
             </div>

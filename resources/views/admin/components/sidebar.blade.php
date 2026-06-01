@@ -66,9 +66,17 @@
             <li class="nav-item {{ request()->is('admin/pages*') ? 'active' : '' }}">
               <a href="/admin/pages" data-label="Pages">
                 <span class="icon">
-                  <i class="lni lni-tag"></i>
+                  <i class="lni lni-empty-file"></i>
                 </span>
                 <span class="text">Pages</span>
+              </a>
+            </li>
+            <li class="nav-item {{ request()->is('admin/menus*') ? 'active' : '' }}">
+              <a href="/admin/menus" data-label="Menus">
+                <span class="icon">
+                  <i class="lni lni-menu"></i>
+                </span>
+                <span class="text">Menus</span>
               </a>
             </li>
             <li class="nav-item {{ request()->is('admin/seo*') ? 'active' : '' }}">

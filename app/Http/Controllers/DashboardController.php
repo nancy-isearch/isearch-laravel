@@ -16,19 +16,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $data['totalProducts'] = Product::count();
-        $data['activeProducts'] = Product::where('status', 1)->count();
-        $data['inactiveProducts'] = Product::where('status', 0)->count();
 
-        $data['totalCategories'] = Category::count();
-        $data['activeCategories'] = Category::where('is_active', 1)->count();
-        $data['inactiveCategories'] = Category::where('is_active', 0)->count();
-
-        $data['totalEnquiries'] = Enquiry::count();
-        $data['pendingEnquiries'] = Enquiry::where('status', 'pending')->count();
-        $data['completedEnquiries'] = Enquiry::where('status', 'completed')->count();
-
-        return view('admin.modules.Dashboard.dashboard', $data);
+        return view('admin.modules.Dashboard.dashboard', []);
     }
 
     public function getChartData(Request $request)

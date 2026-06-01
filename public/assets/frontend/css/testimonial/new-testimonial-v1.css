@@ -1,0 +1,90 @@
+/* Our Testimonial Section*/
+.testimonial-section {
+  background: #cfe6f7;
+  overflow: hidden;
+}
+.testimonial-section .testimonial-left {
+  padding-left: 60px;
+}
+.testimonial-section .testimonial-left h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+.testimonial-section .subtitle {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 30px;
+}
+.testimonial-section .testimonial-illustration img {
+  max-width: 260px;
+}
+/* SLIDER */
+.testimonial-section .testimonial-slider-wrapper {
+  position: relative;
+}
+.testimonial-section .testimonial-slider {
+  display: flex;
+  gap: 24px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  padding-bottom: 40px;
+}
+.testimonial-section .testimonial-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px 30px;
+}
+.testimonial-section .testimonial-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.testimonial-section .testimonial-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+.testimonial-section .testimonial-footer span {
+  display: block;
+  font-size: 13px;
+  color: #666;
+}
+/* NAV */
+.testimonial-section .testimonial-nav {
+  display: flex;
+  justify-content: end;
+  padding-inline-end: 20px;
+  gap: 12px;
+}
+.testimonial-section .testimonial-nav button {
+  --btn-size: 42px;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  border-radius: 50%;
+  border: none;
+  background: white;
+  font-size: calc(1.275rem + 0.3vw);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--bs-box-shadow);
+}
+.testimonial-section .testimonial-nav button > i.hgi-arrow-left-01 {
+  padding-right: 2px;
+}
+.testimonial-section .testimonial-nav button > i.hgi-arrow-right-01 {
+  padding-left: 2px;
+}
+
+.testimonial--logo{
+  width: auto;
+  height: 40px;
+  object-fit: contain;
+}

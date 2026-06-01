@@ -13,17 +13,15 @@ return new class extends Migration
     {
         Schema::create('enquiries', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
+            $table->string('name');
+            $table->string('mobile', 20);
+            $table->string('dial_code', 10)->nullable();
             $table->string('email');
-            $table->string('phone')->nullable();
-            $table->string('country_city')->nullable();
-            $table->string('product_id')->nullable();
-            $table->string('preferred_size')->nullable();
-            $table->string('purpose')->nullable();
-            $table->string('preferred_finish')->nullable();
-            // $table->string('preferred_time')->nullable();
-            $table->text('message');
-            $table->enum('status', ['pending', 'in-progress', 'completed'])->default('pending');
+            $table->string('url')->nullable();
+            $table->string('service')->nullable();
+            $table->text('requirement');
+            $table->string('ip_address', 45)->nullable();
+            $table->string('user_agent')->nullable();
             $table->timestamps();
         });
     }

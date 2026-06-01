@@ -1,0 +1,86 @@
+:root {
+  --mq-bg2: hsla(228, 45%, 98%, 1);
+  --mq-bg: hsla(0, 0%, 100%, 1);
+  --mq-bc: hsla(222, 24%, 92%, 1);
+  --mq-p: hsla(214, 92%, 35%, 1);
+  --mq-pl: hsla(204, 94%, 94%, 1);
+  --mq-ink2: hsla(224, 18%, 20%, 1);
+  --mq-tr: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.marquee {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+}
+.marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--mq-bg2), transparent);
+}
+.marquee::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--mq-bg2), transparent);
+}
+.mq-row {
+  display: flex;
+  gap: 16px;
+  animation: marqueAnimation 22s linear infinite;
+  min-width: max-content;
+}
+.mq-row.rev {
+  animation-direction: reverse;
+}
+.marquee2 {
+  margin-top: 20px;
+}
+@keyframes marqueAnimation {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.mq-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--mq-bg);
+  border: 1.5px solid var(--mq-bc);
+  border-radius: 100px;
+  padding: 10px 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: var(--mq-tr);
+}
+.mq-item:hover {
+  border-color: var(--mq-p);
+  background: var(--mq-pl);
+}
+.mq-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--mq-p);
+}
+.mq-item span {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--mq-ink2);
+}
+.mq-img-item {
+  width: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.mq-img-item > img {
+  display: block;
+  width: auto;
+  height: 60px;
+  object-fit: contain;
+}

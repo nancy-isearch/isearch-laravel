@@ -1,216 +1,247 @@
-<!-- ===== NAVBAR ===== -->
-<nav role="navigation" aria-label="Main navigation">
-    <a href="/" aria-label="Cholan Arts Home">
-        <img src="{{ asset('assets/svg/brand-logo.png') }}" alt="Relaxing Ganesh handcrafted wooden idol" loading="lazy"
-            width="150" />
-    </a>
-
-    <ul class="nav-links" role="list">
-        <li><a href="/" {{ request()->is('/') ? 'aria-current=page' : '' }}>Home</a></li>
-        <li><a href="/about-us" {{ request()->is('about-us') ? 'aria-current=page' : '' }}>About Us</a></li>
-        <li><a href="/products" {{ request()->is('products') ? 'aria-current=page' : '' }}>Products</a></li>
-        <li class="dropdown mega-menu-wrapper">
-            <a class="dropdown-toggle" href="/categories" {{ request()->is('categories') ? 'aria-current=page' : '' }}>
-                Categories
-                <svg class="mega-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+<!-- navbar -->
+<div id="ss-navbar">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand is-logo" href="/" aria-label="Go to Homepage">
+                <img src="{{ asset('assets/frontend/svg/isearch-solution-logo.svg') }}" alt="iSearch solution logo" width="220"
+                    height="40" loading="lazy" />
             </a>
-
-            <div class="mega-menu">
-                <div class="mega-menu-inner">
-
-                    {{-- Categories - 3 columns --}}
-                    @if ($menuCategories->isNotEmpty())
-                        <div class="mega-section categories-section">
-                            <p class="mega-section-label">Idols</p>
-                            <ul class="mega-list">
-                                @foreach ($menuCategories as $category)
-                                    <li>
-                                        <a href="{{ url('category/' . $category->name.'-idols') }}" class="mega-link">
-                                            <span class="mega-link-icon">&#9670;</span>
-                                            {{ ucfirst($category->name) }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+            <button class="navbar-toggler is-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Open navigation menu">
+                <svg class="icon--cc">
+                    <use href="{{ asset('assets/icons.svg') }}#menu-01-stroke-rounded"></use>
+                </svg>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end me-4 d-none d-lg-flex">
+                <ul class="navbar-nav is-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/corporate/who-we-are.html">About Us</a>
+                    </li>
+                    <li class="nav-item dropdown is-mega-dropdown">
+                        <a class="nav-link" href="/our-services.html" role="button">
+                            Services
+                            <span class="is-arrow">▾</span>
+                        </a>
+                        <div class="dropdown-menu is-mega-menu">
+                            <div class="mega-ai-menu container p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div>
+                                        <strong class="mb-1">Our Solutions</strong>
+                                        <p class="text-muted small mb-0">Full-stack digital growth solutions for brands
+                                            that want results.</p>
+                                    </div>
+                                    <a href="/our-services.html" class="secondary-btn"> Explore All Services </a>
+                                </div>
+                                <div class="row g-4">
+                                    <div class="col-lg-3">
+                                        <div class="mega-card">
+                                            <div class="mega-title">
+                                                <i class="bi bi-graph-up-arrow"></i>
+                                                SEO Services
+                                            </div>
+                                            <a href="/search-engine-optimization/seo-services.html">SEO Services</a>
+                                            <a href="/search-engine-optimization/seo-consutancy.html">SEO
+                                                Consultancy</a>
+                                            <a href="/search-engine-optimization/content-optimization.html">Content
+                                                Optimization</a>
+                                            <a href="/search-engine-optimization/link-building.html">Link Building</a>
+                                            <a href="/search-engine-optimization/seo-package.html">SEO Packages</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mega-card">
+                                            <div class="mega-title">
+                                                <i class="bi bi-megaphone"></i>
+                                                Social Media Marketing
+                                            </div>
+                                            <a href="/social-media/social-media-optimization.html">SMO</a>
+                                            <a href="/social-media/smo-strategy.html">SMO Strategy</a>
+                                            <a href="/search-engine-marketing/facebook-ad-campaign.html">Facebook
+                                                Marketing</a>
+                                            <a href="/social-media/smo-linkedIn.html">LinkedIn Marketing</a>
+                                            <a href="/search-engine-marketing/pay_per_click_management.html">PPC
+                                                Advertising</a>
+                                            <a href="/search-engine-marketing/email-marketing.html">Email Marketing</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mega-card">
+                                            <div class="mega-title">
+                                                <i class="bi bi-code-slash"></i>
+                                                Web Development
+                                            </div>
+                                            <a href="/web-design/website-design.html">Web design</a>
+                                            <a href="/website-development/ecommerce-website-development.html">eCommerce
+                                                Development</a>
+                                            <a href="/website-development/cms-solutions.html">CMS Development</a>
+                                            <a href="/web-design/psd-to-html.html">PSD to HTML</a>
+                                            <a href="/website-development/payment-gateway-integration-services.html">Payment
+                                                Integration</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mega-card">
+                                            <div class="mega-title">
+                                                <i class="bi bi-phone"></i>
+                                                Mobile Apps
+                                            </div>
+                                            <a href="/software-solutions/application-software-development.html">Android
+                                                App Development</a>
+                                            <a href="/mobile-app-development/iphone-application-development.html">iOS
+                                                App Development</a>
+                                            
+                                                href="/mobile-app-development/custom-mobile-application-development.html">Custom
+                                                Mobile Apps</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    @endif
-
-                    {{-- Vertical Divider --}}
-                    @if ($menuCollections->isNotEmpty() && $menuCategories->isNotEmpty())
-                        <div class="mega-divider"></div>
-                    @endif
-
-                    {{-- Collections - right side box --}}
-                    @if ($menuCollections->isNotEmpty())
-                        <div class="mega-section collections-section">
-                            <p class="mega-section-label">Collections</p>
-                            <ul class="mega-list">
-                                @foreach ($menuCollections as $collection)
-                                    <li>
-                                        <a href="{{ url('collection/' . Str::slug($collection->name)) }}" class="mega-link">
-                                            <span class="mega-link-icon">&#9670;</span>
-                                            {{ ucfirst($collection->name) }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <a href="/contact-us" class="btn-orange mt-4">
-                                Contact Us
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 12H4M15 7L20 12L15 17"></path>
-                                </svg>
-                            </a>
+                    </li>
+                    <li class="nav-item dropdown is-mega-dropdown">
+                        <a class="nav-link" href="#" role="button">
+                            AI Solutions
+                            <span class="is-arrow">▾</span>
+                        </a>
+                        <div class="dropdown-menu is-mega-menu">
+                            <div class="container">
+                                <div class="row g-4">
+                                    <div class="col-12 d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <div class="is-mega-title">Our AI Solutions</div>
+                                            <div class="is-mega-subtitle">Full-stack digital growth solutions for brands
+                                                that want results.</div>
+                                        </div>
+                                        <a href="/our-services.html" class="secondary-btn"> Explore all Solutions </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="row g-3 mt-0">
+                                                    <div class="col-md-6">
+                                                        <a class="is-mega-service"
+                                                            href="/ai-solutions/ai-seo-services.html">
+                                                            <div class="is-icon">📈</div>
+                                                            <div>
+                                                                <div class="is-s-title">AI SEO Services</div>
+                                                                <div class="is-s-desc">Scale rankings with smart organic
+                                                                    growth.</div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <a class="is-mega-service"
+                                                            href="/ai-solutions/aeo-services.html">
+                                                            <div class="is-icon">💬</div>
+                                                            <div>
+                                                                <div class="is-s-title">AEO Services</div>
+                                                                <div class="is-s-desc">Dominate voice search and
+                                                                    conversational answers.</div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <a class="is-mega-service"
+                                                            href="/ai-solutions/geo-services.html">
+                                                            <div class="is-icon">🤖</div>
+                                                            <div>
+                                                                <div class="is-s-title">GEO Services</div>
+                                                                <div class="is-s-desc">Optimise visibility for
+                                                                    generative AI results.</div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="is-mega-panel mt-3">
+                                                    <div class="is-panel-title">Need a quick plan?</div>
+                                                    <div class="is-panel-desc">Get a free website + SEO audit. We’ll
+                                                        send a clear action plan.</div>
+                                                    <a href="/contact-us"
+                                                        class="is-btn is-btn-primary w-100 mt-3"> Get In Touch </a>
+                                                    <a href="https://calendly.com/bdm-isearchsolution/30-minute-meeting-clone?month=2026-04"
+                                                        target="_blank" class="is-btn is-btn-outline w-100 mt-2"> Book
+                                                        a Call </a>
+                                                    <div class="is-mini-note mt-3">⚡ Avg. response time: under 2 hours
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    @endif
-
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/corporate/careers.html">Careers</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-flex align-items-center">
+                <a href="/contact-us" class="primary-btn text-decoration-none">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="ss-mobile-navbar">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header">
+            <span class="offcanvas-title">Menu</span>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <a class="mobile-link" href="/" aria-label="Go to Homepage">Home</a>
+            <a class="mobile-link" href="/corporate/who-we-are.html"> About Us </a>
+            <div class="mobile-accordion">
+                <button class="mobile-drop" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mServices">Services <span>+</span></button>
+                <div class="collapse" id="mServices">
+                    <div class="mobile-heading">SEO Services</div>
+                    <a class="mobile-sub" href="/search-engine-optimization/seo-services.html">SEO Services</a>
+                    <a class="mobile-sub" href="/search-engine-optimization/seo-consutancy.html">SEO Consultancy</a>
+                    <a class="mobile-sub" href="/search-engine-optimization/content-optimization.html">Content
+                        Optimization</a>
+                    <a class="mobile-sub" href="/search-engine-optimization/link-building.html">Link Building</a>
+                    <a class="mobile-sub" href="/search-engine-optimization/seo-package.html">SEO Packages</a>
+                    <div class="mobile-heading mt-3">Social Media Marketing</div>
+                    <a class="mobile-sub" href="/social-media/social-media-optimization.html">SMO</a>
+                    <a class="mobile-sub" href="/social-media/smo-strategy.html">SMO Strategy</a>
+                    <a class="mobile-sub" href="/search-engine-marketing/facebook-ad-campaign.html">Facebook
+                        Marketing</a>
+                    <a class="mobile-sub" href="/social-media/smo-linkedIn.html">LinkedIn Marketing</a>
+                    <a class="mobile-sub" href="/search-engine-marketing/pay_per_click_management.html">PPC
+                        Advertising</a>
+                    <a class="mobile-sub" href="/search-engine-marketing/email-marketing.html">Email Marketing</a>
+                    <div class="mobile-heading mt-3">Web Development</div>
+                    <a href="/web-design/website-design.html">web design</a>
+                    <a class="mobile-sub" href="/website-development/ecommerce-website-development.html">eCommerce
+                        Development</a>
+                    <a class="mobile-sub" href="/website-development/cms-solutions.html">CMS Development</a>
+                    <a class="mobile-sub" href="/web-design/psd-to-html.html">PSD to HTML</a>
+                    <a class="mobile-sub"
+                        href="/website-development/payment-gateway-integration-services.html">Payment Integration</a>
+                    <div class="mobile-heading mt-3">Mobile Apps</div>
+                    <a class="mobile-sub" href="/software-solutions/application-software-development.html">Android App
+                        Development</a>
+                    <a class="mobile-sub" href="/mobile-app-development/iphone-application-development.html">iOS App
+                        Development</a>
+                    <a class="mobile-sub"
+                        href="/mobile-app-development/custom-mobile-application-development.html">Custom Mobile
+                        Apps</a>
+                </div>
+                <button class="mobile-drop" type="button" data-bs-toggle="collapse" data-bs-target="#mAI">AI
+                    Solutions <span>+</span></button>
+                <div class="collapse" id="mAI">
+                    <div class="mobile-heading">AI Solutions</div>
+                    <a class="mobile-sub" href="/ai-solutions/ai-seo-services.html">AI SEO Services</a>
+                    <a class="mobile-sub" href="/ai-solutions/aeo-services.html">AEO Services</a>
+                    <a class="mobile-sub" href="/ai-solutions/geo-services.html">GEO Services</a>
                 </div>
             </div>
-        </li>
-        <li><a href="/contact-us" {{ request()->is('contact-us') ? 'aria-current=page' : '' }}>Contact Us</a></li>
-    </ul>
-
-    <div class="nav-actions">
-        <div class="search-bar" role="search" aria-label="Search products">
-            <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off"
-                style="border: none; background: none;">
-            <div id="suggestions"></div>
-        </div>
-
-        <a href="/contact-us" class="btn-outline-orange" aria-label="Contact Us">
-            Contact Us
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="#ff9933" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20.0001 12H4.00012" />
-                <path d="M15.0001 17C15.0001 17 20.0001 13.3176 20.0001 12C20.0001 10.6824 15.0001 7 15.0001 7" />
-            </svg>
-        </a>
-
-        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</nav>
-
-<!-- ===== MOBILE NAV ===== -->
-<nav class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
-
-    <a href="/">Home</a>
-    <a href="/about-us">About Us</a>
-    <a href="/products">Products</a>
-
-    <!-- Categories Mobile Dropdown -->
-    <div class="mobile-dropdown">
-        <a class="dropdown-toggle" onclick="toggleMobileDropdown(event)">
-            Categories
-            <span class="arrow">▼</span>
-        </a>
-
-        <div class="mobile-mega-menu" id="mobileCategoryMenu">
-
-            {{-- Categories --}}
-            @if ($menuCategories->isNotEmpty())
-                <div class="mobile-mega-section">
-                    <p class="mobile-mega-label">Idols</p>
-                    <ul class="mobile-mega-list categories-list">
-                        @foreach ($menuCategories as $category)
-                            <li>
-                                <a href="{{ url('category/' . $category->name.'-idols') }}" class="mobile-mega-link">
-                                    <span class="mobile-mega-icon">&#9670;</span>
-                                    {{ ucfirst($category->name) }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            {{-- Collections --}}
-            @if ($menuCollections->isNotEmpty())
-                <div class="mobile-mega-divider"></div>
-                <div class="mobile-mega-section mobile-collections-box">
-                    <p class="mobile-mega-label">Collections</p>
-                    <ul class="mobile-mega-list collections-list">
-                        @foreach ($menuCollections as $collection)
-                            <li>
-                                <a href="{{ url('collection/' . Str::slug($collection->name)) }}" class="mobile-mega-link">
-                                    <span class="mobile-mega-icon">&#9670;</span>
-                                    {{ ucfirst($collection->name) }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
+            <a class="mobile-link" href="/resources/resources.html">Resources</a>
+            <a class="mobile-link" href="/corporate/careers.html">Careers</a>
+            <a href="/contact-us" class="secondary-btn d-block mt-3 mx-auto"> Get Proposal </a>
         </div>
     </div>
-
-    <a href="/contact-us" class="btn-orange">Contact Us</a>
-</nav>
-
-
-
-
-<script>
-    // ===== HAMBURGER — mobile nav open/close =====
-    // const hamburger = document.querySelector('.hamburger');
-    // const mobileNav = document.getElementById('mobile-nav');
-
-    // if (hamburger && mobileNav) {
-    //     hamburger.addEventListener('click', function() {
-    //         const isOpen = mobileNav.classList.toggle('open');
-    //         hamburger.classList.toggle('open', isOpen);
-    //         hamburger.setAttribute('aria-expanded', isOpen);
-
-    //         // Jab mobile nav band ho to dropdown bhi band karo
-    //         if (!isOpen) closeMobileDropdown();
-    //     });
-    // }
-
-    // // ===== MOBILE DROPDOWN — Categories toggle =====
-    // function toggleMobileDropdown(e) {
-    //     e.preventDefault(); // Page redirect rok do
-    //     const wrapper = document.querySelector('.mobile-dropdown');
-    //     const menu = document.getElementById('mobileCategoryMenu');
-    //     if (!wrapper || !menu) return;
-
-    //     const isOpen = wrapper.classList.toggle('open');
-    //     menu.classList.toggle('open', isOpen);
-    // }
-
-    // function closeMobileDropdown() {
-    //     const wrapper = document.querySelector('.mobile-dropdown');
-    //     const menu = document.getElementById('mobileCategoryMenu');
-    //     if (wrapper) wrapper.classList.remove('open');
-    //     if (menu) menu.classList.remove('open');
-    // }
-
-    // ===== MOBILE NAV LINKS — click par mobile nav band karo =====
-    // Sirf non-toggle links (Home, About, Products, Contact, mega-menu items)
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     // Mobile nav ke direct <a> links (Home, About Us, Products, Contact Us)
-    //     document.querySelectorAll('#mobile-nav > a').forEach(function(link) {
-    //         link.addEventListener('click', function() {
-    //             mobileNav.classList.remove('open');
-    //             hamburger.classList.remove('open');
-    //             hamburger.setAttribute('aria-expanded', 'false');
-    //             closeMobileDropdown();
-    //         });
-    //     });
-
-    //     // Mega menu ke andar category/collection links — click par sab band
-    //     document.querySelectorAll('.mobile-mega-link').forEach(function(link) {
-    //         link.addEventListener('click', function() {
-    //             mobileNav.classList.remove('open');
-    //             hamburger.classList.remove('open');
-    //             hamburger.setAttribute('aria-expanded', 'false');
-    //             closeMobileDropdown();
-    //         });
-    //     });
-    // });
-</script>
+</div>
