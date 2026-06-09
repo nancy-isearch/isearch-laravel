@@ -3,24 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class SectionTemplate extends Model
+class Page extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'slug',
+        'is_active',
+        'meta_title',
+        'meta_description',
+        'schema',
     ];
 
     public function pageSections()
     {
         return $this->hasMany(PageSection::class);
-    }
-
-    public function sectionFields()
-    {
-        return $this->hasMany(SectionField::class)->orderBy('sort_order');
     }
 }

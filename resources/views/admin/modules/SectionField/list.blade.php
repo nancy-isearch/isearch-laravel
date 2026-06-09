@@ -69,6 +69,7 @@
                                                     data-label="{{ $field->field_label }}" 
                                                     data-name="{{ $field->field_name }}" 
                                                     data-type="{{ $field->field_type }}" 
+                                                    data-subfields="{{ json_encode($field->sub_fields) }}" 
                                                     data-required="{{ $field->is_required }}" 
                                                     data-sort="{{ $field->sort_order }}" 
                                                     data-bs-toggle="modal" data-bs-target="#editModal">
@@ -133,13 +134,20 @@
 
                   <div class="col-md-6 mb-3">
                       <label>Field Type <span class="text-danger">*</span></label>
-                      <select name="field_type" class="form-control" required>
+                      <select name="field_type" id="add_field_type" class="form-control" required>
                           <option value="text">Text</option>
                           <option value="textarea">Textarea</option>
                           <option value="number">Number</option>
                           <option value="file">File (Image)</option>
                           <option value="editor">WYSIWYG Editor</option>
+                          <option value="repeater">Repeater (e.g. FAQ)</option>
                       </select>
+                  </div>
+
+                  <div class="col-md-12 mb-3 d-none" id="add_sub_fields_container">
+                      <label>Sub Fields (JSON format) <span class="text-danger">*</span></label>
+                      <textarea name="sub_fields" id="add_sub_fields" class="form-control" rows="4" placeholder='[{"name": "question", "label": "Question", "type": "text"}, {"name": "answer", "label": "Answer", "type": "textarea"}]'></textarea>
+                      <small class="text-muted">Define the repeating fields in JSON array format.</small>
                   </div>
 
                   <div class="col-md-6 mb-3">
@@ -205,7 +213,14 @@
                           <option value="number">Number</option>
                           <option value="file">File (Image)</option>
                           <option value="editor">WYSIWYG Editor</option>
+                          <option value="repeater">Repeater (e.g. FAQ)</option>
                       </select>
+                  </div>
+
+                  <div class="col-md-12 mb-3 d-none" id="edit_sub_fields_container">
+                      <label>Sub Fields (JSON format) <span class="text-danger">*</span></label>
+                      <textarea name="sub_fields" id="edit_sub_fields" class="form-control" rows="4" placeholder='[{"name": "question", "label": "Question", "type": "text"}, {"name": "answer", "label": "Answer", "type": "textarea"}]'></textarea>
+                      <small class="text-muted">Define the repeating fields in JSON array format.</small>
                   </div>
 
                   <div class="col-md-6 mb-3">
@@ -244,6 +259,30 @@
         const editSort = document.getElementById('edit_sort');
         const editRequired = document.getElementById('edit_required');
 
+        const editSubFields = document.getElementById('edit_sub_fields');
+        const editSubFieldsContainer = document.getElementById('edit_sub_fields_container');
+
+        const addFieldType = document.getElementById('add_field_type');
+        const addSubFieldsContainer = document.getElementById('add_sub_fields_container');
+
+        // Toggle sub_fields on Add
+        addFieldType.addEventListener('change', function () {
+            if (this.value === 'repeater') {
+                addSubFieldsContainer.classList.remove('d-none');
+            } else {
+                addSubFieldsContainer.classList.add('d-none');
+            }
+        });
+
+        // Toggle sub_fields on Edit
+        editType.addEventListener('change', function () {
+            if (this.value === 'repeater') {
+                editSubFieldsContainer.classList.remove('d-none');
+            } else {
+                editSubFieldsContainer.classList.add('d-none');
+            }
+        });
+
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const id = this.getAttribute('data-id');
@@ -255,6 +294,22 @@
                 editSort.value = this.getAttribute('data-sort');
                 editRequired.checked = this.getAttribute('data-required') == '1';
                 
+                const subFieldsStr = this.getAttribute('data-subfields');
+                let subFieldsVal = '';
+                if (subFieldsStr && subFieldsStr !== 'null') {
+                    // Try to format it beautifully
+                    try {
+                        const parsed = JSON.parse(subFieldsStr);
+                        subFieldsVal = JSON.stringify(parsed, null, 2);
+                    } catch (e) {
+                        subFieldsVal = subFieldsStr;
+                    }
+                }
+                editSubFields.value = subFieldsVal;
+                
+                // Trigger change to show/hide sub_fields container
+                editType.dispatchEvent(new Event('change'));
+
                 editForm.action = `/admin/section-fields/${id}`;
             });
         });

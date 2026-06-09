@@ -3,154 +3,112 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\City;
 use App\Models\Page;
-use App\Models\Service;
+use App\Models\PageSection;
+use App\Models\SectionTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
     public function index()
     {
         $pages = Page::latest()->paginate(20);
-
-        return view(
-            'admin.pages.index',
-            compact('pages')
-        );
+        return view('admin.pages.index', compact('pages'));
     }
 
     public function create()
     {
-        $services = Service::all();
-
-        $cities = City::all();
-
-        $parents = Page::all();
-
-        return view(
-            'admin.pages.create',
-            compact(
-                'services',
-                'cities',
-                'parents'
-            )
-        );
+        $templates = SectionTemplate::with('sectionFields')->get();
+        return view('admin.pages.create', compact('templates'));
     }
 
-    public function store(
-        Request $request
-    ) {
-        $validated = $request->validate([
-
-            'title' => 'required',
-
-            'slug' => 'required|unique:pages',
-
-            'page_type' => 'required',
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:pages,slug',
         ]);
 
-        Page::create(
-            $validated +
-            $request->only([
+        DB::beginTransaction();
+        try {
+            $data = $request->only(['name', 'is_active', 'meta_title', 'meta_description', 'schema']);
+            $data['slug'] = empty($request->slug) ? Str::slug($request->name) : $request->slug;
+            $data['is_active'] = $request->has('is_active');
 
-                'service_id',
-                'city_id',
-                'parent_page_id',
+            $page = Page::create($data);
 
-                'seo_title',
-                'seo_description',
-                'seo_keywords',
+            if ($request->has('sections') && is_array($request->sections)) {
+                foreach ($request->sections as $section) {
+                    if (isset($section['template_id'])) {
+                        PageSection::create([
+                            'page_id' => $page->id,
+                            'section_template_id' => $section['template_id'],
+                            'section_data' => $section['data'] ?? [],
+                        ]);
+                    }
+                }
+            }
 
-                'status',
-
-            ])
-        );
-
-        return redirect()
-            ->route(
-                'admin.pages.index'
-            )
-            ->with(
-                'success',
-                'Page created.'
-            );
+            DB::commit();
+            return redirect()->route('pages.index')->with('success', 'Page created successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withInput()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
 
     public function edit(Page $page)
     {
-        $services = Service::all();
-
-        $cities = City::all();
-
-        $parents = Page::where(
-            'id',
-            '!=',
-            $page->id
-        )->get();
-
-        return view(
-            'admin.pages.edit',
-            compact(
-                'page',
-                'services',
-                'cities',
-                'parents'
-            )
-        );
+        $templates = SectionTemplate::with('sectionFields')->get();
+        $page->load(['pageSections' => function($query) {
+            $query->orderBy('id'); // Or add a sort_order to page_sections later if needed
+        }]);
+        
+        return view('admin.pages.edit', compact('page', 'templates'));
     }
 
-    public function update(
-        Request $request,
-        Page $page
-    ) {
-        $validated = $request->validate([
-
-            'title' => 'required',
-
-            'slug' => 'required|unique:pages,slug,'.$page->id,
-
-            'page_type' => 'required',
-
+    public function update(Request $request, Page $page)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:pages,slug,' . $page->id,
         ]);
 
-        $page->update(
+        DB::beginTransaction();
+        try {
+            $data = $request->only(['name', 'slug', 'meta_title', 'meta_description', 'schema']);
+            $data['is_active'] = $request->has('is_active');
 
-            $validated +
+            $page->update($data);
 
-            $request->only([
+            // Delete old sections and recreate them to keep it simple and maintain order
+            $page->pageSections()->delete();
 
-                'service_id',
-                'city_id',
-                'parent_page_id',
+            if ($request->has('sections') && is_array($request->sections)) {
+                foreach ($request->sections as $section) {
+                    if (isset($section['template_id'])) {
+                        PageSection::create([
+                            'page_id' => $page->id,
+                            'section_template_id' => $section['template_id'],
+                            'section_data' => $section['data'] ?? [],
+                        ]);
+                    }
+                }
+            }
 
-                'seo_title',
-                'seo_description',
-                'seo_keywords',
-
-                'status',
-
-            ])
-
-        );
-
-        return back()
-            ->with(
-                'success',
-                'Updated.'
-            );
+            DB::commit();
+            return redirect()->route('pages.index')->with('success', 'Page updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withInput()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
 
-    public function destroy(
-        Page $page
-    ) {
+    public function destroy(Page $page)
+    {
         $page->delete();
-
-        return back()
-            ->with(
-                'success',
-                'Deleted.'
-            );
+        return back()->with('success', 'Page deleted successfully.');
     }
 }

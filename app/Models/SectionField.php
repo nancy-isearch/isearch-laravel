@@ -12,7 +12,12 @@ class SectionField extends Model
         'field_label',
         'field_type',
         'is_required',
-        'sort_order'
+        'sort_order',
+        'sub_fields'
+    ];
+
+    protected $casts = [
+        'sub_fields' => 'array'
     ];
 
     public function sectionTemplate()

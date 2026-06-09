@@ -25,10 +25,21 @@ class SectionFieldController extends Controller
             'field_type' => 'required|string|max:255',
             'is_required' => 'boolean',
             'sort_order' => 'integer',
+            'sub_fields' => 'nullable|string',
         ]);
 
         $data = $request->all();
         $data['is_required'] = $request->has('is_required');
+
+        if ($request->field_type === 'repeater' && $request->sub_fields) {
+            $decoded = json_decode($request->sub_fields, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return back()->withErrors(['sub_fields' => 'Invalid JSON format for Sub Fields.'])->withInput();
+            }
+            $data['sub_fields'] = $decoded;
+        } else {
+            $data['sub_fields'] = null;
+        }
         
         SectionField::create($data);
 
@@ -44,10 +55,23 @@ class SectionFieldController extends Controller
             'field_type' => 'required|string|max:255',
             'is_required' => 'boolean',
             'sort_order' => 'integer',
+            'sub_fields' => 'nullable|string',
         ]);
 
         $data = $request->all();
         $data['is_required'] = $request->has('is_required');
+
+        \Log::info('Update Sub fields payload: ' . $request->sub_fields);
+
+        if ($request->field_type === 'repeater' && $request->sub_fields) {
+            $decoded = json_decode($request->sub_fields, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return back()->withErrors(['sub_fields' => 'Invalid JSON format for Sub Fields.'])->withInput();
+            }
+            $data['sub_fields'] = $decoded;
+        } else {
+            $data['sub_fields'] = null;
+        }
 
         $sectionField->update($data);
 
