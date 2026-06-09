@@ -1,0 +1,171 @@
+.tab-system-wrapper .tab-system {
+        --cc-tab-bg-inactive: #ffffff;
+        --cc-tab-bg-hover: var(--primary-color, #074fae);
+        --cc-tab-bg-active: var(--primary-color, #074fae);
+        --cc-tab-text-inactive: #333333;
+        --cc-tab-text-hover: #ffffff;
+        --cc-tab-text-active: #ffffff;
+        --cc-tab-radius: 8px;
+        --cc-tab-transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .tab-system-wrapper .tab-aside {
+        display: flex;
+        flex-direction: column;
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 12px;
+      }
+      .tab-system-wrapper .tab-nav-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+      }
+      .tab-system-wrapper .tab-trigger-node {
+        position: relative;
+        width: 100%;
+      }
+      .tab-system-wrapper .tab-label {
+        display: block;
+        width: 100%;
+        padding: 14px 18px;
+        background: var(--cc-tab-bg-inactive);
+        border-radius: var(--cc-tab-radius);
+        color: var(--cc-tab-text-inactive);
+        cursor: pointer;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        text-align: left;
+        border: 1px solid #e2e8f0;
+        line-height: 1.4;
+        margin: 0;
+        transition: all var(--cc-tab-transition);
+      }
+      /* Hover Engine States */
+      .tab-system-wrapper .tab-input:not(:checked) + .tab-label:hover {
+        background: var(--cc-tab-bg-hover);
+        color: var(--cc-tab-text-hover);
+        border-color: var(--cc-tab-bg-hover);
+      }
+      /* Selected Engine Tab Active Target */
+      .tab-system-wrapper .tab-input:checked + .tab-label {
+        background: var(--cc-tab-bg-active);
+        color: var(--cc-tab-text-active);
+        border-color: var(--cc-tab-bg-active);
+        box-shadow: 0 4px 12px rgba(7, 79, 174, 0.15);
+      }
+      .tab-system-wrapper .tab-aside-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 12px;
+        padding: 15px 10px 10px;
+        border-top: 1px solid #e2e8f0;
+      }
+      .tab-system-wrapper .tab-aside-footer img {
+        max-width: 120px;
+        height: auto;
+        margin-bottom: 15px;
+        display: block;
+      }
+      .tab-system-wrapper .tab-footer-meta {
+        font-size: 0.8125rem;
+        color: #64748b;
+        line-height: 1.5;
+      }
+      /* Crawl-Optimized Content Deck Frame */
+      .tab-system-wrapper .tab-content-deck {
+        position: relative;
+        width: 100%;
+      }
+      /* Crawl-Safe Panel States: Always visible to Googlebot in DOM tree */
+      .tab-system-wrapper .tab-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition:
+          transform var(--cc-tab-transition),
+          opacity var(--cc-tab-transition),
+          visibility var(--cc-tab-transition);
+      }
+      /* Content Article Typography */
+      .tab-system-wrapper .tab-article h3 {
+        font-size: calc(1.3rem + 0.6vw);
+        margin-top: 0;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .tab-system-wrapper .tab-article p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #4b5563;
+        margin-bottom: 1rem;
+      }
+      .tab-system-wrapper .tab-article ul {
+        padding-left: 30px;
+        margin-bottom: 1.5rem;
+        gap: 20px;
+      }
+      .tab-system-wrapper .tab-article ul li {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+      .tab-system-wrapper strong,
+      .tab-system-wrapper b {
+        color: #1f1f1f;
+      }
+      .tab-system-wrapper .tab-article ul li:last-child {
+        margin-bottom: 0px;
+      }
+      /* Pure CSS Selector Selection Engine via :has() */
+      .tab-system-wrapper .tab-system:has(#tab-1:checked) #content-1,
+      .tab-system-wrapper .tab-system:has(#tab-2:checked) #content-2,
+      .tab-system-wrapper .tab-system:has(#tab-3:checked) #content-3,
+      .tab-system-wrapper .tab-system:has(#tab-4:checked) #content-4,
+      .tab-system-wrapper .tab-system:has(#tab-5:checked) #content-5,
+      .tab-system-wrapper .tab-system:has(#tab-6:checked) #content-6 {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      /* Responsive Structural Media Rules */
+      @media (max-width: 991px) {
+        .tab-system-wrapper .tab-system {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .tab-system-wrapper .tab-aside {
+          margin-bottom: 10px;
+        }
+        .tab-system-wrapper .tab-aside-footer img {
+          display: none;
+        }
+      }
+      @media (max-width: 576px) {
+        .tab-system-wrapper {
+          padding: 3.5rem 0;
+        }
+        .tab-system-wrapper .tab-article h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .tab-system-wrapper .tab-label {
+          padding: 12px 14px;
+          font-size: 0.875rem;
+        }
+      }

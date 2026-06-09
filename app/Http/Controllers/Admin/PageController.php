@@ -3,95 +3,154 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\Page;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function index()
     {
-        $pages = \App\Models\Page::latest()->paginate(10);
-        return view('admin.modules.Page.list', compact('pages'));
+        $pages = Page::latest()->paginate(20);
+
+        return view(
+            'admin.pages.index',
+            compact('pages')
+        );
     }
 
     public function create()
     {
-        return view('admin.modules.Page.add');
+        $services = Service::all();
+
+        $cities = City::all();
+
+        $parents = Page::all();
+
+        return view(
+            'admin.pages.create',
+            compact(
+                'services',
+                'cities',
+                'parents'
+            )
+        );
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|unique:pages,slug|max:255',
-            'status' => 'required|boolean',
+    public function store(
+        Request $request
+    ) {
+        $validated = $request->validate([
+
+            'title' => 'required',
+
+            'slug' => 'required|unique:pages',
+
+            'page_type' => 'required',
+
         ]);
 
-        $page = \App\Models\Page::create($request->only('title', 'slug', 'meta_title', 'meta_description', 'status'));
+        Page::create(
+            $validated +
+            $request->only([
 
-        $this->syncSections($page, $request);
+                'service_id',
+                'city_id',
+                'parent_page_id',
 
-        return redirect()->route('pages.index')->with('success', 'Page created successfully.');
+                'seo_title',
+                'seo_description',
+                'seo_keywords',
+
+                'status',
+
+            ])
+        );
+
+        return redirect()
+            ->route(
+                'admin.pages.index'
+            )
+            ->with(
+                'success',
+                'Page created.'
+            );
     }
 
-    public function edit(string $id)
+    public function edit(Page $page)
     {
-        $page = \App\Models\Page::with('sections')->findOrFail($id);
-        return view('admin.modules.Page.edit', compact('page'));
+        $services = Service::all();
+
+        $cities = City::all();
+
+        $parents = Page::where(
+            'id',
+            '!=',
+            $page->id
+        )->get();
+
+        return view(
+            'admin.pages.edit',
+            compact(
+                'page',
+                'services',
+                'cities',
+                'parents'
+            )
+        );
     }
 
-    public function update(Request $request, string $id)
-    {
-        $page = \App\Models\Page::findOrFail($id);
-        
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:pages,slug,'.$page->id,
-            'status' => 'required|boolean',
+    public function update(
+        Request $request,
+        Page $page
+    ) {
+        $validated = $request->validate([
+
+            'title' => 'required',
+
+            'slug' => 'required|unique:pages,slug,'.$page->id,
+
+            'page_type' => 'required',
+
         ]);
 
-        $page->update($request->only('title', 'slug', 'meta_title', 'meta_description', 'status'));
+        $page->update(
 
-        $this->syncSections($page, $request);
+            $validated +
 
-        return redirect()->route('pages.index')->with('success', 'Page updated successfully.');
+            $request->only([
+
+                'service_id',
+                'city_id',
+                'parent_page_id',
+
+                'seo_title',
+                'seo_description',
+                'seo_keywords',
+
+                'status',
+
+            ])
+
+        );
+
+        return back()
+            ->with(
+                'success',
+                'Updated.'
+            );
     }
 
-    public function destroy(string $id)
-    {
-        $page = \App\Models\Page::findOrFail($id);
+    public function destroy(
+        Page $page
+    ) {
         $page->delete();
-        return redirect()->route('pages.index')->with('success', 'Page deleted successfully.');
-    }
-    
-    protected function syncSections(\App\Models\Page $page, Request $request)
-    {
-        $page->sections()->delete(); 
-        
-        if ($request->has('sections') && is_array($request->sections)) {
-            foreach ($request->sections as $index => $sectionData) {
-                $content = $sectionData['content'] ?? [];
-                
-                if (isset($sectionData['files']) && is_array($sectionData['files'])) {
-                   foreach ($sectionData['files'] as $key => $file) {
-                       $path = $file->store('page_sections', 'public');
-                       $content[$key] = $path;
-                   }
-                }
-                
-                if (isset($sectionData['existing_files']) && is_array($sectionData['existing_files'])) {
-                   foreach ($sectionData['existing_files'] as $key => $path) {
-                       if(!isset($content[$key])) { 
-                           $content[$key] = $path;
-                       }
-                   }
-                }
 
-                $page->sections()->create([
-                    'section_type' => $sectionData['type'],
-                    'content' => $content,
-                    'order_index' => $index
-                ]);
-            }
-        }
+        return back()
+            ->with(
+                'success',
+                'Deleted.'
+            );
     }
 }

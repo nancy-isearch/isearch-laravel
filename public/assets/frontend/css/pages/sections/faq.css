@@ -1,0 +1,168 @@
+.faq-section {
+    background-color: #ffffff;
+}
+.faq-section .faq-aside .faq-display-title {
+    font-size: 2.75rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #111827;
+    line-height: 1.2;
+}
+.faq-section .faq-aside .faq-lead {
+    max-width: 400px;
+    color: #6b7280;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.faq-section .faq-aside .faq-illustration-wrap {
+    max-width: 260px;
+}
+.faq-section .faq-aside .faq-illustration-wrap img {
+    width: 100%;
+    height: auto;
+}
+.faq-section .faq-vertical-line {
+    border-left: 1px dashed #cfd4da;
+    margin: 1rem 0;
+    height: 100%;
+    min-height: 250px;
+}
+.faq-section .faq-accordion-holder {
+    width: 100%;
+}
+.faq-section .faq-accordion-holder details {
+    margin-bottom: 0;
+    overflow: hidden;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.3s ease;
+}
+.faq-section .faq-accordion-holder details:first-child {
+    border-top: 1px solid #e5e7eb;
+}
+.faq-section .faq-accordion-holder summary {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #111827;
+    padding: 20px 15px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    outline: none;
+    transition: color 0.2s ease;
+}
+.faq-section .faq-accordion-holder summary::-webkit-details-marker {
+    display: none;
+}
+.faq-section .faq-accordion-holder summary:hover,
+.faq-section .faq-accordion-holder summary:focus-visible {
+    color: var(--primary-color, #2563eb);
+}
+.faq-section .faq-accordion-holder .faq-badge {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    border: 1px solid #c7d2fe;
+    color: var(--primary-color, #2563eb);
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.faq-section .faq-accordion-holder .faq-toggle-icon {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-section .faq-accordion-holder details[open] .faq-toggle-icon {
+    transform: rotate(45deg);
+}
+.faq-section .faq-accordion-holder .faq-body-panel {
+    padding: 0px 20px 24px 71px;
+}
+.faq-section .faq-accordion-holder .faq-body-panel p {
+    font-size: 0.9375rem;
+    color: #4b5563;
+    line-height: 1.7;
+}
+.faq-section .faq-accordion-holder .faq-body-panel ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+    color: #4b5563;
+    font-size: 0.9375rem;
+}
+.faq-section .faq-accordion-holder .faq-body-panel ul li {
+    margin-bottom: 6px;
+}
+/* Functional CSS Drawer Mechanism */
+.faq-section .faq-accordion-holder .faq-hidden-drawer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-section .faq-accordion-holder .faq-action-label {
+    cursor: pointer;
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+}
+.faq-section .faq-accordion-holder .faq-action-label::before {
+    content: "Read More FAQs";
+    display: inline-block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 10px 28px;
+    border-radius: 50px;
+    background-color: var(--primary-color, #2563eb);
+    color: #ffffff;
+    border: 1px solid var(--primary-color, #2563eb);
+    transition: all 0.25s ease;
+    text-align: center;
+}
+.faq-section .faq-accordion-holder .faq-action-label:hover::before {
+    color: var(--primary-color, #2563eb);
+    background-color: transparent;
+}
+/* State Engine Rules */
+.faq-section .faq-gate-input:checked ~ .faq-hidden-drawer {
+    max-height: 1500px; /* Safe bounds overflow parameter */
+}
+.faq-section .faq-gate-input:checked ~ .faq-action-label::before {
+    content: "Read Less FAQs";
+}
+/* Responsive Media Engine Rules */
+@media (max-width: 991px) {
+    .faq-section .faq-vertical-line,
+    .faq-section .faq-illustration-wrap {
+        display: none;
+    }
+    .faq-section .faq-aside .faq-display-title {
+        font-size: 2.25rem;
+    }
+}
+@media (max-width: 576px) {
+    .faq-section .faq-accordion-holder .faq-body-panel {
+        padding: 0 16px;
+    }
+    .faq-section .faq-accordion-holder summary {
+        gap: 12px;
+        padding: 16px 5px;
+        font-size: 1rem;
+    }
+}

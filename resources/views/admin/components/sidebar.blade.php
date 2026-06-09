@@ -79,6 +79,22 @@
                 <span class="text">Menus</span>
               </a>
             </li>
+            <li class="nav-item {{ request()->is('admin/section-templates*') ? 'active' : '' }}">
+              <a href="/admin/section-templates" data-label="Section Templates">
+                <span class="icon">
+                  <i class="lni lni-layers"></i>
+                </span>
+                <span class="text">Section Templates</span>
+              </a>
+            </li>
+            <li class="nav-item {{ request()->is('admin/section-fields*') ? 'active' : '' }}">
+              <a href="/admin/section-fields" data-label="Section Fields">
+                <span class="icon">
+                  <i class="lni lni-cog"></i>
+                </span>
+                <span class="text">Section Fields</span>
+              </a>
+            </li>
             <li class="nav-item {{ request()->is('admin/seo*') ? 'active' : '' }}">
               <a href="/admin/seo" data-label="Pages">
                 <span class="icon">

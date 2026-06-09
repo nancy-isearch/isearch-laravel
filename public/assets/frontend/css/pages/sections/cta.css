@@ -1,0 +1,50 @@
+.cta-banner {
+        position: relative;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cta-banner .cta-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .cta-banner .cta-overlay > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .cta-banner .cta-overlay::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(13, 77, 184, 0.8) 100%);
+        z-index: 1;
+      }
+      .cta-banner .cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        text-align: center;
+        margin: 0 auto;
+        color: #ffffff;
+      }
+      .cta-banner .cta-title {
+        max-width: 24ch;
+        margin: 0 auto 1rem;
+      }
+      .cta-banner .cta-lead {
+        font-size: 1.125rem;
+        max-width: 65ch;
+        margin: 0 auto 1.5rem;
+        opacity: 0.95;
+      }
+      @media (max-width: 768px) {
+        .cta-banner {
+          min-height: 380px;
+        }
+        .cta-banner .cta-lead {
+          font-size: 1rem;
+        }
+      }
