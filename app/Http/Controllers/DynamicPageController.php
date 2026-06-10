@@ -8,7 +8,10 @@ class DynamicPageController extends Controller
 {
     public function show($slug)
     {
-        $page = \App\Models\Page::with('sections')->where('slug', $slug)->where('status', 1)->firstOrFail();
+        $page = \App\Models\Page::with('pageSections.sectionTemplate')
+            ->where('slug', $slug)
+            ->where('is_active', 1)
+            ->firstOrFail();
 
         // Also fetch global header menu (Assuming a menu named 'Header')
         // Usually, this should be done in a View Composer in AppServiceProvider
