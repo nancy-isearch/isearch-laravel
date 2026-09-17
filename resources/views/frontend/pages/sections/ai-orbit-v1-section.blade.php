@@ -1,0 +1,443 @@
+<style>
+#ai-future-seo .ai-orbit-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(40px, 6vw, 75px);
+  align-items: start;
+}
+
+#ai-future-seo .ai-orbit-showcase {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 440px;
+  z-index: 10;
+}
+
+#ai-future-seo .ai-orbit-system {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ai-future-seo .ai-orbit-core {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: absolute;
+}
+
+#ai-future-seo .google-brand-word {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+#ai-future-seo .google-brand-word .g-blue {
+  color: #4285F4;
+}
+
+#ai-future-seo .google-brand-word .g-red {
+  color: #EA4335;
+}
+
+#ai-future-seo .google-brand-word .g-yellow {
+  color: #FBBC05;
+}
+
+#ai-future-seo .google-brand-word .g-green {
+  color: #34A853;
+}
+
+#ai-future-seo .ai-orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#ai-future-seo .ai-orbit-ring--1 {
+  width: 200px;
+  height: 200px;
+  border: 1.5px solid rgba(2, 132, 199, 0.18);
+}
+
+#ai-future-seo .ai-orbit-ring--2 {
+  width: 290px;
+  height: 290px;
+  border: 1.5px dashed rgba(7, 79, 174, 0.22);
+}
+
+#ai-future-seo .ai-orbit-ring--3 {
+  width: 380px;
+  height: 380px;
+  border: 1.5px solid rgba(2, 132, 199, 0.15);
+}
+
+#ai-future-seo .ai-orbit-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: orbitSpinCW 30s linear infinite;
+  pointer-events: none;
+  z-index: 20;
+}
+
+#ai-future-seo .ai-orbit-track--inner {
+  inset: 45px;
+  animation: orbitSpinCCW 24s linear infinite;
+  z-index: 21;
+}
+
+#ai-future-seo .ai-orbit-badge {
+  position: absolute;
+  pointer-events: auto;
+  z-index: 25;
+}
+
+#ai-future-seo .ai-orbit-badge--chatgpt {
+  top: 10px;
+  right: 40px;
+}
+
+#ai-future-seo .ai-orbit-badge--claude {
+  bottom: 15px;
+  left: 30px;
+}
+
+#ai-future-seo .ai-orbit-badge--copilot {
+  top: 50%;
+  left: -20px;
+  margin-top: -16px;
+}
+
+#ai-future-seo .ai-orbit-badge--perplexity {
+  top: 10px;
+  left: 30px;
+}
+
+#ai-future-seo .ai-orbit-badge--gemini {
+  bottom: 15px;
+  right: 25px;
+}
+
+#ai-future-seo .ai-orbit-badge--deepseek {
+  top: 50%;
+  right: -20px;
+  margin-top: -16px;
+}
+
+#ai-future-seo .ai-orbit-badge__inner {
+  position: relative;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #0b2447;
+  box-shadow: 0 4px 15px rgba(11, 36, 71, 0.08);
+  white-space: nowrap;
+  animation: orbitCounterSpinCW 30s linear infinite;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#ai-future-seo .ai-orbit-track--inner .ai-orbit-badge__inner {
+  animation: orbitCounterSpinCCW 24s linear infinite;
+}
+
+#ai-future-seo .ai-orbit-badge__inner:hover {
+  box-shadow: 0 8px 25px rgba(7, 79, 174, 0.16);
+  border-color: #074fae;
+}
+
+#ai-future-seo .ai-orbit-content p {
+  color: #64748b;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+#ai-future-seo .ai-stat-callout {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #f8fafc;
+  border-left: 4px solid #074fae;
+  border-radius: 0 12px 12px 0;
+  padding: 14px 20px;
+  margin: 20px 0;
+}
+
+#ai-future-seo .ai-stat-callout__number {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #074fae;
+  line-height: 1;
+}
+
+#ai-future-seo .ai-stat-callout__text strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #0b2447;
+  margin-bottom: 2px;
+}
+
+#ai-future-seo .ai-stat-callout__text span {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+#ai-future-seo .ai-geo-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(7, 79, 174, 0.04);
+  border: 1px solid rgba(7, 79, 174, 0.14);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-top: 18px;
+  margin-bottom: 24px;
+}
+
+#ai-future-seo .ai-geo-summary__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(7, 79, 174, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #074fae;
+}
+
+#ai-future-seo .ai-geo-summary p {
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  #ai-future-seo .ai-orbit-layout {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    text-align: start;
+  }
+
+  #ai-future-seo .ai-orbit-showcase {
+    position: static;
+    min-height: auto;
+    margin: 0 auto;
+  }
+
+  #ai-future-seo .ai-stat-callout {
+    text-align: left;
+  }
+
+  #ai-future-seo .ai-geo-summary {
+    text-align: left;
+  }
+}
+
+@media (max-width: 576px) {
+  #ai-future-seo .ai-orbit-system {
+    width: 310px;
+    height: 310px;
+  }
+
+  #ai-future-seo .ai-orbit-ring--3 {
+    width: 310px;
+    height: 310px;
+  }
+
+  #ai-future-seo .ai-orbit-ring--2 {
+    width: 240px;
+    height: 240px;
+  }
+
+  #ai-future-seo .ai-orbit-ring--1 {
+    width: 170px;
+    height: 170px;
+  }
+
+  #ai-future-seo .ai-orbit-core {
+    width: 110px;
+    height: 110px;
+  }
+
+  #ai-future-seo .google-brand-word {
+    font-size: 1.35rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  #ai-future-seo .ai-orbit-layout {
+    text-align: start;
+  }
+
+  #ai-future-seo .ai-stat-callout {
+    flex-direction: column;
+    text-align: start;
+    align-items: flex-start;
+  }
+
+}
+</style>
+
+<section class="section-clean section-clean--white" id="ai-future-seo" aria-labelledby="ai-future-title">
+    <div class="container-fluid">
+        <div class="ai-orbit-layout">
+            <!-- Left Side: Interactive Orbit Animation with Google & AI Tools -->
+            <div class="ai-orbit-showcase" role="region" aria-label="AI Search Engine Ecosystem Showcase">
+                <div class="ai-orbit-system" aria-hidden="true">
+                    <!-- Center Core Google Badge -->
+                    <div class="ai-orbit-core">
+                        <div class="google-brand-word">
+                            <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+                        </div>
+                    </div>
+
+                    <!-- Concentric Orbit Rings -->
+                    <div class="ai-orbit-ring ai-orbit-ring--1"></div>
+                    <div class="ai-orbit-ring ai-orbit-ring--2"></div>
+                    <div class="ai-orbit-ring ai-orbit-ring--3"></div>
+
+                    <!-- Revolving Outer Track (ChatGPT, Claude, Copilot) -->
+                    <div class="ai-orbit-track">
+                        <!-- ChatGPT Badge -->
+                        <div class="ai-orbit-badge ai-orbit-badge--chatgpt">
+                            <div class="ai-orbit-badge__inner">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+                                    <use href="{{ asset('assets/frontend/media/icons/icons.svg#chatgpt-ai-badge') }}"></use>
+                                </svg>
+                                <span>ChatGPT</span>
+                            </div>
+                        </div>
+
+                        <!-- Claude Badge -->
+                        <div class="ai-orbit-badge ai-orbit-badge--claude">
+                            <div class="ai-orbit-badge__inner">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+                                    <use href="{{ asset('assets/frontend/media/icons/icons.svg#claude-ai-badge') }}"></use>
+                                </svg>
+                                <span>Claude</span>
+                            </div>
+                        </div>
+
+                        <!-- Copilot Badge -->
+                        <div class="ai-orbit-badge ai-orbit-badge--copilot">
+                            <div class="ai-orbit-badge__inner">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+                                    <use href="{{ asset('assets/frontend/media/icons/icons.svg#copilot-ai-badge') }}"></use>
+                                </svg>
+                                <span>Copilot</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revolving Inner Track (Perplexity, Gemini, DeepSeek) -->
+                    <div class="ai-orbit-track ai-orbit-track--inner">
+                        <!-- Perplexity Badge -->
+                        <div class="ai-orbit-badge ai-orbit-badge--perplexity">
+                            <div class="ai-orbit-badge__inner">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+                                    <use href="{{ asset('assets/frontend/media/icons/icons.svg#perplexity-ai-badge') }}"></use>
+                                </svg>
+                                <span>Perplexity</span>
+                            </div>
+                        </div>
+
+                        <!-- Gemini Badge -->
+                        <div class="ai-orbit-badge ai-orbit-badge--gemini">
+                            <div class="ai-orbit-badge__inner">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+                                    <use href="{{ asset('assets/frontend/media/icons/icons.svg#gemini-ai-badge') }}"></use>
+                                </svg>
+                                <span>Gemini</span>
+                            </div>
+                        </div>
+
+                        <!-- DeepSeek Badge -->
+                        <div class="ai-orbit-badge ai-orbit-badge--deepseek">
+                            <div class="ai-orbit-badge__inner">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" focusable="false">
+                                    <use href="{{ asset('assets/frontend/media/icons/icons.svg#geo-search-badge') }}"></use>
+                                </svg>
+                                <span>DeepSeek</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Content -->
+            <div class="ai-orbit-content">
+                <div class="badge badge-purple" style="display:inline-block; padding:6px 14px; font-size:0.85rem; font-weight:600; background:rgba(147,51,234,0.1); color:#9333ea; border-radius:50px; margin-bottom:16px;">
+                    {{ $content['badge'] ?? 'Future-Ready Search' }}
+                </div>
+                
+                <h2 class="section-title" id="ai-future-title" style="font-size:2.2rem; font-weight:700; color:#0b2447; margin-bottom:16px;">
+                    {!! $content['heading'] ?? 'The Future of Search Isn’t Google vs. AI. <span style="color:#074fae">It’s Both.</span>' !!}
+                </h2>
+                
+                <p class="lead-text" style="font-size:1.1rem; color:#475569; margin-bottom:20px;">
+                    {{ $content['lead_text'] ?? '95% of ChatGPT users still search on Google. Your customers are not leaving Google. They\'re adding AI to the way they search, research, compare, and make decisions. So, visibility across both traditional and AI-powered search is not a choice anymore.' }}
+                </p>
+                
+                <p>
+                    {{ $content['paragraph_2'] ?? 'AI is also becoming part of Google itself. Google says AI Overviews now reach 2.5 billion monthly active users that show the future of search isn\'t a choice between Google and AI. Google is becoming an AI-powered search experience too.' }}
+                </p>
+
+                <div class="ai-stat-callout">
+                    <div class="ai-stat-callout__number">{{ $content['stat_number'] ?? '80%' }}</div>
+                    <div class="ai-stat-callout__text">
+                        <strong>{{ $content['stat_strong'] ?? 'of Consumers read AI summaries' }}</strong>
+                        <span>{{ $content['stat_span'] ?? 'for at least 40% of their searches.' }}</span>
+                    </div>
+                </div>
+
+                <p>
+                    {{ $content['paragraph_3'] ?? 'That means your brand needs to be visible not only in the links people click, but also in the answers they read before they click.' }}
+                </p>
+
+                <div class="ai-geo-summary">
+                    <div class="ai-geo-summary__icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" focusable="false">
+                            <use href="{{ asset('assets/frontend/media/icons/icons.svg#check-mark-simple') }}"></use>
+                        </svg>
+                    </div>
+                    <p>
+                        {!! $content['summary_box'] ?? 'As an experienced <strong>SEO Company in UK</strong>, iSearchSolution combines traditional SEO with <strong>AI Search Optimisation, Generative Search Optimisation, Answer Engine Optimisation, and LLM SEO</strong> to help your brand stay visible across the evolving search journey.' !!}
+                    </p>
+                </div>
+
+                <a href="{{ $content['btn_link'] ?? '#audit-form' }}" class="btn btn-primary" style="background:#074fae; color:#fff; border-radius:8px; padding:12px 24px; display:inline-block; text-decoration:none;" aria-label="Get Your Future-Proof SEO Audit">
+                    {!! $content['btn_text'] ?? 'Get Your Future-Proof SEO Audit &rarr;' !!}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

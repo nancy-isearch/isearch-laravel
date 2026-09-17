@@ -394,6 +394,164 @@ class CitySeoSectionsSeeder extends Seeder
                 ],
             ],
 
+            // ============================================================
+            // SECTION 12: HERO STOP CHASING SECTION
+            // Blade: frontend/pages/sections/hero-stope-chase-section.blade.php
+            // ============================================================
+            [
+                'name' => 'Hero Stop Chasing Section',
+                'slug' => 'hero-stope-chase-section',
+                'fields' => [
+                    [
+                        'name'  => 'bg_image',
+                        'label' => 'Background Image',
+                        'type'  => 'file',
+                    ],
+                    [
+                        'name'  => 'badge',
+                        'label' => 'Badge Text (e.g. Next-Gen Search Intelligence)',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'  => 'heading',
+                        'label' => 'Main Heading (H1)',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'  => 'description',
+                        'label' => 'Hero Description',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'       => 'features',
+                        'label'      => 'Feature Cards',
+                        'type'       => 'repeater',
+                        'sub_fields' => [
+                            ['field_name' => 'label', 'field_label' => 'Feature Label', 'field_type' => 'text'],
+                            ['field_name' => 'icon', 'field_label' => 'Icon ID (e.g. file-text-stroke-rounded)', 'field_type' => 'text'],
+                        ],
+                    ],
+                ],
+            ],
+
+            // ============================================================
+            // SECTION 13: SERVICES GRID V1 SECTION
+            // Blade: frontend/pages/sections/services-grid-v1-section.blade.php
+            // ============================================================
+            [
+                'name' => 'Services Grid V1 Section',
+                'slug' => 'services-grid-v1-section',
+                'fields' => [
+                    [
+                        'name'  => 'badge',
+                        'label' => 'Badge Text (e.g. SEO Agency UK)',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'  => 'heading',
+                        'label' => 'Main Heading',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'  => 'description',
+                        'label' => 'Lead Description',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'       => 'services',
+                        'label'      => 'Service Cards',
+                        'type'       => 'repeater',
+                        'sub_fields' => [
+                            ['field_name' => 'title', 'field_label' => 'Service Title', 'field_type' => 'text'],
+                            ['field_name' => 'description', 'field_label' => 'Description', 'field_type' => 'textarea'],
+                            ['field_name' => 'image', 'field_label' => 'Card Image', 'field_type' => 'file'],
+                            ['field_name' => 'icon', 'field_label' => 'Icon Symbol ID (e.g. sparkles-stroke-rounded)', 'field_type' => 'text'],
+                            ['field_name' => 'link_text', 'field_label' => 'Link Text', 'field_type' => 'text'],
+                            ['field_name' => 'link_url', 'field_label' => 'Link URL', 'field_type' => 'text'],
+                        ],
+                    ],
+                    [
+                        'name'  => 'hubs_label',
+                        'label' => 'Hubs Label Text',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'       => 'hubs',
+                        'label'      => 'Hub Cities List',
+                        'type'       => 'repeater',
+                        'sub_fields' => [
+                            ['field_name' => 'name', 'field_label' => 'City Name', 'field_type' => 'text'],
+                        ],
+                    ],
+                ],
+            ],
+
+            // ============================================================
+            // SECTION 14: AI ORBIT V1 SECTION
+            // Blade: frontend/pages/sections/ai-orbit-v1-section.blade.php
+            // ============================================================
+            [
+                'name' => 'AI Orbit V1 Section',
+                'slug' => 'ai-orbit-v1-section',
+                'fields' => [
+                    [
+                        'name'  => 'badge',
+                        'label' => 'Badge Text (e.g. Future-Ready Search)',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'  => 'heading',
+                        'label' => 'Main Heading',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'  => 'lead_text',
+                        'label' => 'Lead Text (First Paragraph)',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'  => 'paragraph_2',
+                        'label' => 'Second Paragraph',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'  => 'stat_number',
+                        'label' => 'Stat Number (e.g. 80%)',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'  => 'stat_strong',
+                        'label' => 'Stat Highlighted Text (e.g. of Consumers read AI summaries)',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'  => 'stat_span',
+                        'label' => 'Stat Subtext',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'  => 'paragraph_3',
+                        'label' => 'Third Paragraph (Below Stat)',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'  => 'summary_box',
+                        'label' => 'Summary Box Text',
+                        'type'  => 'textarea',
+                    ],
+                    [
+                        'name'  => 'btn_text',
+                        'label' => 'Button Text',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'name'  => 'btn_link',
+                        'label' => 'Button Link / URL',
+                        'type'  => 'text',
+                    ],
+                ],
+            ],
+
         ];
 
         // ---------------------------------------------------------------

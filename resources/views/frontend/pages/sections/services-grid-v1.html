@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services Grid | iSearch Components</title>
+    <link rel="icon" href="../../media/logo/favicon.ico" type="image/x-icon" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="../../lib/bootstrap.min.css" />
+
+    <!-- Master Global Production CSS (Tokens, Fonts, Resets, Headings, Utilities, Animations) -->
+    <link rel="stylesheet" href="../../lib/global.css" />
+
+    <!-- Scoped Component Styles -->
+    <style>
+#services {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 15% 20%, rgba(2, 132, 199, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(7, 79, 174, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #f0f7ff 0%, #e5f1fd 50%, #edf6fe 100%);
+  border-top: 1px solid rgba(2, 132, 199, 0.12);
+  border-bottom: 1px solid rgba(2, 132, 199, 0.12);
+}
+
+
+#services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(2, 132, 199, 0.15) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#services .clean-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+#services .clean-service-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(11, 36, 71, 0.04);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform: translateY(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+}
+
+#services .clean-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(11, 36, 71, 0.12), 0 0 0 1px rgba(7, 79, 174, 0.12);
+  border-color: #93c5fd;
+}
+
+#services .clean-service-card__top {
+  height: 220px;
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #f1f5f9;
+  transform: translateZ(0);
+}
+
+#services .clean-service-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#services .clean-service-card:hover .clean-service-card__img {
+  transform: scale(1.06);
+}
+
+#services .clean-service-card__icon-badge {
+  position: absolute;
+  top: 194px;
+  left: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 6px 18px rgba(11, 36, 71, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #074fae;
+  z-index: 20;
+  transform: scale(1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, background-color, box-shadow, color;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.35s ease,
+              color 0.35s ease,
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#services .clean-service-card:hover .clean-service-card__icon-badge {
+  background: #074fae;
+  color: #ffffff;
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 10px 24px rgba(7, 79, 174, 0.32);
+}
+
+#services .clean-service-card__body {
+  padding: 32px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  z-index: 5;
+}
+
+#services .clean-service-card:hover .card-title {
+  color: #074fae;
+}
+
+#services .clean-service-card__body .card-desc {
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#services .clean-service-card .clean-link-arrow {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #074fae;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  text-decoration: none;
+  transition: color 0.3s ease, gap 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#services .clean-service-card:hover .clean-link-arrow {
+  color: #0284c7;
+  transform: translateX(4px);
+  gap: 11px;
+}
+
+#services .clean-cities-strip {
+  margin-top: 36px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  color: #64748b;
+  box-shadow: 0 2px 8px rgba(11, 36, 71, 0.03);
+}
+
+#services .clean-cities-strip strong {
+  color: #0b2447;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#services .clean-cities-strip .city-badge {
+  background: #f1f5f9;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: #334155;
+}
+
+@media (max-width: 1200px) {
+  #services .clean-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  #services .clean-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+</style>
+  </head>
+  <body>
+
+      <section class="section-clean" id="services" aria-labelledby="services-title">
+        <div class="container-fluid">
+          <div class="clean-section-head clean-section-head--center">
+            <div class="badge badge-primary">SEO Agency UK</div>
+            <h2 class="section-title" id="services-title">Our SEO Solutions Built to Turn <span class="ac">Searches into Customers</span></h2>
+            <p class="section-desc">Don’t just look for rankings on Google searches; understand what people are searching for on AI tools and share your presence using our Answer Engine Optimisation in the UK.</p>
+          </div>
+
+          <!-- Clean 3-Column Service Grid -->
+          <div class="clean-services-grid">
+            <!-- Card 1: AI Search Engine Optimization -->
+            <article class="clean-service-card">
+              <div class="clean-service-card__top">
+                <img src="../../media/images/ai-search-engine-optimization-image.webp" alt="AI Search Engine Optimization Strategy" class="clean-service-card__img" loading="lazy" width="380" height="200" />
+              </div>
+              <div class="clean-service-card__icon-badge" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><use href="../../media/icons/icons.svg#artificial-intelligence-04-stroke-rounded"></use></svg>
+              </div>
+              <div class="clean-service-card__body">
+                <h3 class="card-title">AI Search Engine Optimization</h3>
+                <p class="card-desc">At iSearchSolution, we optimise your website and content for your digital presence across ChatGPT, Gemini, Google AI Overviews, and more.</p>
+                <a href="/ai-solutions/ai-seo-services.html" class="clean-link-arrow" aria-label="Explore AI Search Engine Optimization Services">Explore AI SEO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><use href="../../media/icons/icons.svg#arrow-right-sm-stroke-rounded"></use></svg></a>
+              </div>
+            </article>
+
+            <!-- Card 2: Generative Search Optimisation -->
+            <article class="clean-service-card">
+              <div class="clean-service-card__top">
+                <img src="../../media/images/image-1142.webp" alt="Generative Search Optimisation and Brand Authority" class="clean-service-card__img" loading="lazy" width="380" height="200" />
+              </div>
+              <div class="clean-service-card__icon-badge" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><use href="../../media/icons/icons.svg#sparkles-stroke-rounded"></use></svg>
+              </div>
+              <div class="clean-service-card__body">
+                <h3 class="card-title">Generative Search Optimisation</h3>
+                <p class="card-desc">Our SEO experts optimise your content and build authority signals to register your presence in the AI-generated answers.</p>
+                <a href="/ai-solutions/geo-services.html" class="clean-link-arrow" aria-label="Explore Generative Search Optimisation (GEO) Services">Explore GEO Services <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><use href="../../media/icons/icons.svg#arrow-right-sm-stroke-rounded"></use></svg></a>
+              </div>
+            </article>
+
+            <!-- Card 3: AEO Search Engine Optimisation -->
+            <article class="clean-service-card">
+              <div class="clean-service-card__top">
+                <img src="../../media/images/img-2755.webp" alt="AEO Search Engine Optimisation and Featured Snippets" class="clean-service-card__img" loading="lazy" width="380" height="200" />
+              </div>
+              <div class="clean-service-card__icon-badge" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><use href="../../media/icons/icons.svg#bubble-chat-spark-01-stroke-rounded"></use></svg>
+              </div>
+              <div class="clean-service-card__body">
+                <h3 class="card-title">AEO Search Engine Optimisation</h3>
+                <p class="card-desc">Connect with your customers before they reach your website by bringing your brand into featured snippets, voice search, and question-based results.</p>
+                <a href="/ai-solutions/aeo-services.html" class="clean-link-arrow" aria-label="Explore Answer Engine Optimisation (AEO) Services">Explore AEO Services <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><use href="../../media/icons/icons.svg#arrow-right-sm-stroke-rounded"></use></svg></a>
+              </div>
+            </article>
+
+            <!-- Card 4: Content Optimization -->
+            <article class="clean-service-card">
+              <div class="clean-service-card__top">
+                <img src="../../media/images/img-lg-475183.webp" alt="Content Optimization and Search Relevance" class="clean-service-card__img" loading="lazy" width="380" height="200" />
+              </div>
+              <div class="clean-service-card__icon-badge" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><use href="../../media/icons/icons.svg#content-writing-stroke-rounded"></use></svg>
+              </div>
+              <div class="clean-service-card__body">
+                <h3 class="card-title">Content Optimization</h3>
+                <p class="card-desc">Produce clear and useful answers so that search engines and AI can understand and improve your presence in digital ecosystems.</p>
+                <a href="/search-engine-optimization/content-optimization.html" class="clean-link-arrow" aria-label="Explore Content Optimization Services">Explore Content SEO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><use href="../../media/icons/icons.svg#arrow-right-sm-stroke-rounded"></use></svg></a>
+              </div>
+            </article>
+
+            <!-- Card 5: LLM SEO Services -->
+            <article class="clean-service-card">
+              <div class="clean-service-card__top">
+                <img src="../../media/images/deep-learning-ai-solutions-developer.webp" alt="LLM SEO Services for Large Language Models" class="clean-service-card__img" loading="lazy" width="380" height="200" />
+              </div>
+              <div class="clean-service-card__icon-badge" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><use href="../../media/icons/icons.svg#ai-brain-01-stroke-rounded"></use></svg>
+              </div>
+              <div class="clean-service-card__body">
+                <h3 class="card-title">LLM SEO Services</h3>
+                <p class="card-desc">With LLM SEO Services in the UK, we enable large language models to understand what your brand offers and what you know best.</p>
+                <a href="/ai-solutions/llm-seo-services.html" class="clean-link-arrow" aria-label="Explore LLM SEO Services">Explore LLM SEO <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><use href="../../media/icons/icons.svg#arrow-right-sm-stroke-rounded"></use></svg></a>
+              </div>
+            </article>
+
+            <!-- Card 6: Link Building -->
+            <article class="clean-service-card">
+              <div class="clean-service-card__top">
+                <img src="../../media/images/link-building-experts-team-strategy.webp" alt="Link Building and Authority Growth" class="clean-service-card__img" loading="lazy" width="380" height="200" />
+              </div>
+              <div class="clean-service-card__icon-badge" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><use href="../../media/icons/icons.svg#link-01-stroke-rounded"></use></svg>
+              </div>
+              <div class="clean-service-card__body">
+                <h3 class="card-title">Link Building</h3>
+                <p class="card-desc">We build relevant links to strengthen your website’s authority and credibility in searches so you can turn searches into leads.</p>
+                <a href="/search-engine-optimization/link-building.html" class="clean-link-arrow" aria-label="Explore Link Building Services">Explore Link Building <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><use href="../../media/icons/icons.svg#arrow-right-sm-stroke-rounded"></use></svg></a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Cities Footer Strip -->
+          <div class="clean-cities-strip" aria-label="UK Service Coverage Locations">
+            <strong>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#074fae" stroke-width="2" aria-hidden="true" focusable="false"><use href="../../media/icons/icons.svg#map-pin-stroke-rounded"></use></svg>
+              Serving Regional &amp; National UK Hubs:
+            </strong>
+            <span class="city-badge">London</span>
+            <span class="city-badge">Manchester</span>
+            <span class="city-badge">Birmingham</span>
+            <span class="city-badge">Leeds</span>
+            <span class="city-badge">Liverpool</span>
+            <span class="city-badge">Glasgow</span>
+            <span class="city-badge">Bristol</span>
+            <span class="city-badge">Sheffield</span>
+          </div>
+        </div>
+      </section>
+  </body>
+</html>
