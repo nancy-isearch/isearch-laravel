@@ -1,0 +1,661 @@
+<style>
+.hero-uk-layout {
+  position: relative;
+  min-height: auto;
+  padding: 60px 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-position: center 20%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--text-main);
+  border-bottom: none;
+}
+
+.hero-uk-layout .hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.22) 22%,
+      rgba(255, 255, 255, 0.65) 60%,
+      rgba(255, 255, 255, 0.35) 82%,
+      rgba(255, 255, 255, 0.92) 95%,
+      #ffffff 100%
+    ),
+    radial-gradient(
+      ellipse 65% 80% at 20% 45%,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(255, 255, 255, 0.85) 35%,
+      rgba(255, 255, 255, 0.50) 65%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(255, 255, 255, 0.90) 24%,
+      rgba(255, 255, 255, 0.82) 36%,
+      rgba(255, 255, 255, 0.52) 48%,
+      rgba(255, 255, 255, 0.15) 58%,
+      rgba(255, 255, 255, 0.00) 66%,
+      rgba(255, 255, 255, 0.10) 78%,
+      rgba(255, 255, 255, 0.55) 100%
+    );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-uk-layout .hero-network-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+.hero-uk-layout .hero-container-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 600px) minmax(120px, 1fr) minmax(340px, 420px);
+  gap: 20px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-uk-layout .hero-info {
+  max-width: 600px;
+  z-index: 3;
+}
+
+.hero-uk-layout .hero-desc {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.hero-uk-layout .hero-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 12px;
+  max-width: 440px;
+  margin-bottom: 24px;
+}
+
+.hero-uk-layout .hero-feature-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(7, 79, 174, 0.15);
+  border-radius: 50px;
+  padding: 7px 14px 7px 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.hero-uk-layout .hero-feature-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(7, 79, 174, 0.35);
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(7, 79, 174, 0.1);
+}
+
+.hero-uk-layout .feature-icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(7, 79, 174, 0.08);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.hero-uk-layout .hero-feature-card:hover .feature-icon-wrap {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.hero-uk-layout .feature-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.hero-uk-layout .hero-center-spacer {
+  min-height: 150px;
+  pointer-events: none;
+}
+
+.hero-uk-layout .hero-form-container {
+  width: 100%;
+  max-width: 420px;
+  justify-self: end;
+  z-index: 3;
+}
+
+.hero-uk-layout .hero-form-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 28px 24px;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(15, 23, 42, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.hero-uk-layout .hero-form-card:hover {
+  box-shadow: 0 25px 55px -10px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(7, 79, 174, 0.15);
+}
+
+.hero-uk-layout .hero-form-title {
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+
+.hero-uk-layout .hero-form-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.hero-uk-layout .hero-lead-form .form-group {
+  margin-bottom: 10px;
+}
+
+.hero-uk-layout .form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.hero-uk-layout .form-row-2col .form-group {
+  margin-bottom: 0;
+}
+
+.hero-uk-layout .hero-lead-form .form-input,
+.hero-uk-layout .hero-lead-form .form-select {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-uk-layout .hero-lead-form .form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.hero-uk-layout .hero-lead-form .form-select:invalid,
+.hero-uk-layout .hero-lead-form .form-select option[value=""] {
+  color: #94a3b8;
+}
+
+.hero-uk-layout .hero-lead-form .form-select option {
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.hero-uk-layout .hero-lead-form .form-input:focus,
+.hero-uk-layout .hero-lead-form .form-select:focus,
+.hero-uk-layout .hero-lead-form .form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(7, 79, 174, 0.12);
+}
+
+.hero-uk-layout .hero-lead-form .form-input.is-invalid,
+.hero-uk-layout .hero-lead-form .form-select.is-invalid,
+.hero-uk-layout .hero-lead-form .form-textarea.is-invalid {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
+}
+
+.hero-uk-layout .hero-lead-form .field-error {
+  font-size: 0.72rem;
+  color: #dc2626;
+  line-height: 1.2;
+  margin-top: 3px;
+  display: block;
+  font-weight: 500;
+}
+
+.hero-uk-layout .hero-lead-form .recaptcha-form-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-uk-layout .hero-lead-form .form-textarea {
+  resize: vertical;
+  min-height: 76px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .hero-uk-layout .hero-bg-overlay {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.25) 25%,
+        rgba(255, 255, 255, 0.35) 80%,
+        rgba(255, 255, 255, 0.92) 95%,
+        #ffffff 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 40%,
+        rgba(255, 255, 255, 0.65) 60%,
+        rgba(255, 255, 255, 0.35) 75%,
+        rgba(255, 255, 255, 0.65) 100%
+      );
+  }
+
+  .hero-uk-layout .hero-container-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .hero-uk-layout .hero-center-spacer {
+    display: none;
+  }
+
+  .hero-uk-layout .hero-form-container {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-uk-layout {
+    padding: 50px 0;
+    min-height: auto;
+    background-position: center center;
+  }
+
+  .hero-uk-layout .container-fluid,
+  .hero-uk-layout .hero-container-layout {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-uk-layout .hero-bg-overlay {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.98) 85%, #ffffff 100%);
+  }
+
+  .hero-uk-layout .hero-container-layout {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 36px;
+  }
+
+  .hero-uk-layout .hero-info {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .hero-uk-layout .hero-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hero-uk-layout .hero-form-container {
+    max-width: 520px;
+    margin: 0 auto;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-uk-layout {
+    padding: 40px 0;
+  }
+
+  .hero-uk-layout .container-fluid,
+  .hero-uk-layout .hero-container-layout {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .hero-uk-layout .hero-title {
+    font-size: clamp(2rem, 5vw, 2.4rem);
+    line-height: 1.18;
+  }
+
+  .hero-uk-layout .hero-desc {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  .hero-uk-layout .hero-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .hero-uk-layout .hero-feature-card {
+    padding: 8px 12px 8px 8px;
+  }
+
+  .hero-uk-layout .feature-label {
+    white-space: normal;
+    font-size: 0.8rem;
+    line-height: 1.25;
+  }
+
+  .hero-uk-layout .hero-lead-form .form-input,
+  .hero-uk-layout .hero-lead-form .form-select,
+  .hero-uk-layout .hero-lead-form .form-textarea {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-uk-layout {
+    padding: 32px 0 36px;
+  }
+
+  .hero-uk-layout .hero-container-layout {
+    gap: 28px;
+  }
+
+  .hero-uk-layout .hero-title {
+    font-size: clamp(1.7rem, 6.2vw, 2.1rem);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .hero-uk-layout .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .hero-uk-layout .hero-feature-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .hero-uk-layout .hero-feature-card {
+    border-radius: 14px;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .hero-uk-layout .feature-icon-wrap {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+  }
+
+  .hero-uk-layout .feature-icon-wrap svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hero-uk-layout .feature-label {
+    font-size: 0.76rem;
+    white-space: normal;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .hero-uk-layout .hero-form-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .hero-uk-layout .hero-form-card {
+    border-radius: 20px;
+    padding: 24px 18px;
+    box-shadow: 0 14px 35px -8px rgba(15, 23, 42, 0.12),
+      0 0 0 1px rgba(15, 23, 42, 0.06);
+  }
+
+  .hero-uk-layout .hero-form-title {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .hero-uk-layout .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .hero-uk-layout .hero-lead-form .form-group {
+    margin-bottom: 10px;
+  }
+
+  .hero-uk-layout .hero-lead-form .form-input,
+  .hero-uk-layout .hero-lead-form .form-select {
+    padding: 11px 13px;
+    border-radius: 9px;
+  }
+
+  .hero-uk-layout .hero-lead-form .form-textarea {
+    min-height: 70px;
+    padding: 11px 13px;
+    border-radius: 9px;
+  }
+
+  .hero-uk-layout #submitBtn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-uk-layout {
+    padding: 26px 0 30px;
+  }
+
+  .hero-uk-layout .hero-title {
+    font-size: 1.55rem;
+  }
+
+  .hero-uk-layout .hero-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .hero-uk-layout .hero-feature-card {
+    border-radius: 50px;
+    padding: 7px 12px 7px 8px;
+  }
+
+  .hero-uk-layout .feature-label {
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+
+  .hero-uk-layout .hero-form-card {
+    padding: 20px 14px;
+    border-radius: 16px;
+  }
+
+  .hero-uk-layout .hero-form-title {
+    font-size: 1.2rem;
+  }
+
+  .hero-uk-layout .hero-lead-form .g-recaptcha {
+    transform: scale(0.82);
+    transform-origin: center top;
+  }
+}
+</style>
+
+@php
+    $bgImage = isset($content['bg_image']) && !empty($content['bg_image']) 
+                ? asset('storage/' . $content['bg_image']) 
+                : asset('assets/frontend/images/hero-uk-main.webp');
+    
+    $features = isset($content['features']) && count($content['features']) > 0 
+                ? $content['features'] 
+                : [
+                    ['label' => 'Free AI SEO Audit', 'icon' => 'file-text-stroke-rounded'],
+                    ['label' => 'Local SEO Proficiency', 'icon' => 'map-pin-stroke-rounded'],
+                    ['label' => 'UK SEO Experts', 'icon' => 'layers-stroke-rounded'],
+                    ['label' => 'AI Assistance 24x7', 'icon' => 'headset-stroke-rounded']
+                ];
+@endphp
+
+<section class="hero-uk-layout" id="home" aria-labelledby="hero-title" style="background-image: url('{{ $bgImage }}');">
+    <!-- Background light gradient overlay for maximum readability while keeping center image crystal clear -->
+    <div class="hero-bg-overlay" aria-hidden="true"></div>
+    <div class="hero-network-svg" aria-hidden="true">
+        <svg width="100%" height="100%" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <use href="{{ asset('assets/frontend/media/icons/icons.svg#hero-bg-lines') }}"></use>
+        </svg>
+    </div>
+
+    <div class="container-fluid hero-container-layout">
+        <!-- Left Column: Content -->
+        <div class="hero-info">
+            @if(isset($content['badge']) && !empty($content['badge']))
+            <div class="badge badge-hero" style="display: inline-block; padding: 6px 14px; font-size: 0.85rem; font-weight: 600; background: rgba(7,79,174,0.1); color: #074fae; border-radius: 50px; margin-bottom: 16px;">
+                {{ $content['badge'] }}
+            </div>
+            @else 
+            <div class="badge badge-hero" style="display: inline-block; padding: 6px 14px; font-size: 0.85rem; font-weight: 600; background: rgba(7,79,174,0.1); color: #074fae; border-radius: 50px; margin-bottom: 16px;">
+                Next-Gen Search Intelligence
+            </div>
+            @endif
+
+            <h1 class="hero-title" id="hero-title">{!! $content['heading'] ?? 'Stop Chasing Rankings - <span style="color:#074fae">Be the Answer on AI Recommends</span>' !!}</h1>
+            
+            <p class="hero-desc">{{ $content['description'] ?? 'Go beyond chasing blue links and acquire the spot where 29 million people are searching for answers to their queries, with iSearchSolution - An experienced AI-driven SEO Company in the UK.' }}</p>
+
+            <!-- Feature Cards -->
+            <div class="hero-feature-grid" role="list" aria-label="Key Agency Strengths">
+                @foreach($features as $feature)
+                <div class="hero-feature-card" role="listitem">
+                    <div class="feature-icon-wrap" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                            <use href="{{ asset('assets/frontend/media/icons/icons.svg#' . ($feature['icon'] ?? 'file-text-stroke-rounded')) }}"></use>
+                        </svg>
+                    </div>
+                    <span class="feature-label">{{ $feature['label'] ?? '' }}</span>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Center Column: Visual Breathing Space -->
+        <div class="hero-center-spacer" aria-hidden="true"></div>
+
+        <!-- Right Column: Lead Form Card -->
+        <div class="hero-form-container">
+            <div class="hero-form-card">
+                <h2 class="hero-form-title">Request A Free Proposal</h2>
+                
+                <form
+                    id="enquiryForm"
+                    action="https://www.isearchsolution.com/isearchenquiry.aspx"
+                    method="post"
+                    name="issContactForm"
+                    autocomplete="off"
+                    class="hero-lead-form"
+                    aria-label="Enquiry &amp; SEO Audit Request Form"
+                >
+                    <input type="hidden" name="form_time" id="form_time" />
+
+                    <div class="form-row-2col">
+                        <div class="form-group">
+                            <label for="name" class="visually-hidden">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Full name*" autocomplete="name" aria-required="true" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile" class="visually-hidden">Phone Number</label>
+                            <input type="tel" id="mobile" name="mobile" class="form-input" placeholder="Phone number*" autocomplete="tel" aria-required="true" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row-2col">
+                        <div class="form-group">
+                            <label for="email" class="visually-hidden">Business Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Your email*" autocomplete="email" aria-required="true" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="url" class="visually-hidden">Website URL</label>
+                            <input type="url" id="url" name="url" class="form-input" placeholder="Website URL" autocomplete="url" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service" class="visually-hidden">Choose Services</label>
+                        <select class="form-input form-select" id="service" name="service" aria-label="Choose Services" required>
+                            <option value="" disabled selected hidden>Choose Services*</option>
+                            <option value="seo">Search Engine Optimization (SEO)</option>
+                            <option value="social-media">Social Media</option>
+                            <option value="performance-marketing">Paid Ads / Performance Marketing</option>
+                            <option value="orm">Online Reputation Management (ORM)</option>
+                            <option value="web-design">Web Design</option>
+                            <option value="web-application">Web Application</option>
+                            <option value="mobile-app-development">Mobile App Development</option>
+                            <option value="web-analytics">Web Analytics</option>
+                            <option value="devops-services">DevOps Services</option>
+                            <option value="software-solutions">Software Solutions</option>
+                            <option value="website-development">Website Development</option>
+                            <option value="other-service">Other Service</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requirement" class="visually-hidden">Project Goals or Message</label>
+                        <textarea id="requirement" name="requirement" class="form-input form-textarea" placeholder="Type your message / growth goals*" rows="3" aria-required="true" required></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn" name="submit" class="btn btn-primary w-100" style="background:#074fae; color:#fff; border-radius:10px; border:none;" aria-label="Submit Enquiry for Free Strategy Audit">
+                        <span style="display:flex; align-items:center; justify-content:center; gap:8px;">Enquire Now
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <use href="{{ asset('assets/frontend/media/icons/icons.svg#arrow-right-hero-stroke-rounded') }}"></use>
+                        </svg>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

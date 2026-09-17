@@ -13,7 +13,13 @@ class Page extends Model
         'meta_title',
         'meta_description',
         'schema',
+        'template_id',
     ];
+
+    public function template()
+    {
+        return $this->belongsTo(Template::class);
+    }
 
     public function pageSections()
     {

@@ -20,8 +20,8 @@ class PageController extends Controller
 
     public function create()
     {
-        $templates = SectionTemplate::with('sectionFields')->get();
-        return view('admin.pages.create', compact('templates'));
+        $allSections = SectionTemplate::with('sectionFields')->get();
+        return view('admin.pages.create', compact('allSections'));
     }
 
     public function store(Request $request)
@@ -40,7 +40,8 @@ class PageController extends Controller
             $page = Page::create($data);
 
             if ($request->has('sections') && is_array($request->sections)) {
-                foreach ($request->sections as $section) {
+                $processedSections = $this->processSectionFiles($request->sections);
+                foreach ($processedSections as $section) {
                     if (isset($section['template_id'])) {
                         PageSection::create([
                             'page_id' => $page->id,
@@ -61,12 +62,12 @@ class PageController extends Controller
 
     public function edit(Page $page)
     {
-        $templates = SectionTemplate::with('sectionFields')->get();
+        $allSections = SectionTemplate::with('sectionFields')->get();
         $page->load(['pageSections' => function($query) {
-            $query->orderBy('id'); // Or add a sort_order to page_sections later if needed
+            $query->orderBy('id');
         }]);
         
-        return view('admin.pages.edit', compact('page', 'templates'));
+        return view('admin.pages.edit', compact('page', 'allSections'));
     }
 
     public function update(Request $request, Page $page)
@@ -87,7 +88,8 @@ class PageController extends Controller
             $page->pageSections()->delete();
 
             if ($request->has('sections') && is_array($request->sections)) {
-                foreach ($request->sections as $section) {
+                $processedSections = $this->processSectionFiles($request->sections);
+                foreach ($processedSections as $section) {
                     if (isset($section['template_id'])) {
                         PageSection::create([
                             'page_id' => $page->id,
@@ -110,5 +112,75 @@ class PageController extends Controller
     {
         $page->delete();
         return back()->with('success', 'Page deleted successfully.');
+    }
+
+    private function processSectionFiles($sections)
+    {
+        $processed = [];
+        foreach ($sections as $index => $section) {
+            $data = $section['data'] ?? [];
+            $section['data'] = $this->handleNestedFiles($data);
+            $processed[$index] = $section;
+        }
+        return $processed;
+    }
+
+    private function handleNestedFiles($array)
+    {
+        $processed = [];
+        // First pass: process files and normal fields
+        foreach ($array as $key => $value) {
+            if ($value instanceof \Illuminate\Http\UploadedFile) {
+                $path = $value->store('page_sections', 'public');
+                $processed[$key] = $path;
+            } elseif (is_array($value)) {
+                $processed[$key] = $this->handleNestedFiles($value);
+            } else {
+                $processed[$key] = $value;
+            }
+        }
+        
+        // Second pass: handle _old fallbacks and cleanup
+        foreach ($processed as $key => $value) {
+            if (\Illuminate\Support\Str::endsWith((string)$key, '_old')) {
+                $originalKey = substr($key, 0, -4);
+                // Fallback to old file path if no new file uploaded
+                if (!isset($processed[$originalKey]) || empty($processed[$originalKey])) {
+                    $processed[$originalKey] = $value;
+                }
+                // Always unset the _old key so it doesn't pollute the JSON
+                unset($processed[$key]);
+            }
+        }
+        
+        return $processed;
+    }
+
+    public function copy(Request $request, Page $page)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:pages,slug',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $newPage = $page->replicate();
+            $newPage->name = $request->name;
+            $newPage->slug = $request->slug;
+            $newPage->save();
+
+            foreach ($page->pageSections as $section) {
+                $newSection = $section->replicate();
+                $newSection->page_id = $newPage->id;
+                $newSection->save();
+            }
+
+            DB::commit();
+            return redirect()->route('pages.index')->with('success', 'Page copied successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
 }

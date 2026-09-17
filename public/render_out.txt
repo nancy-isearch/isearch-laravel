@@ -1,0 +1,62 @@
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Digital Marketing Agency - AI Powered IT Solutions | iSearch Solution</title>
+        <meta name="description"
+            content="iSearch Solution, a digital marketing agency delivering AI Powered SEO, PPC, content, social media & IT solutions to grow your business faster." />
+        <link rel="canonical" href="https://www.isearchsolution.com/" />
+        <meta name="robots" content="index, follow" />
+        <meta name="csrf-token" content="oD2FrP86rL4sOZWM8La1XRtM69OJ0Qc5FbFontlb" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.isearchsolution.com/" />
+        <meta property="og:title" content="Leading SEO & AI Optimization Company | iSearch Solution" />
+        <meta property="og:description"
+            content="Boost your online visibility with advanced SEO, AI-driven search optimization, and digital marketing strategies designed to increase traffic, authority, and conversions." />
+        <meta property="og:image" content="http://localhost/assets/frontend/images/logo/footer-logo.svg" />
+        <meta property="og:site_name" content="iSearch Solution" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.isearchsolution.com/" />
+        <meta name="twitter:title" content="Leading SEO & AI Optimization Company | iSearch Solution" />
+        <meta name="twitter:description"
+            content="Advanced SEO, AI-driven search optimization, and digital marketing services to grow your visibility, traffic, and business online." />
+        <meta name="twitter:image" content="http://localhost/assets/frontend/images/logo/footer-logo.svg" />
+        <meta name="twitter:site" content="@isearchsolution" />
+        <meta name="twitter:creator" content="@isearchsolution" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="http://localhost/favIcon.ico" type="image/x-icon" />
+
+        <!-- Preload Fonts -->
+        <link rel="preload" href="http://localhost/assets/frontend/font/static/Inter_18pt-Regular.woff2" as="font"
+            type="font/woff2" crossorigin>
+        <link rel="preload" href="http://localhost/assets/frontend/font/static/Inter_18pt-SemiBold.woff2" as="font"
+            type="font/woff2" crossorigin>
+
+        <!-- Preload Banner Image -->
+        <link rel="preload" as="image" href="http://localhost/assets/frontend/images/banner-img/ai-seo-page-banner.webp"
+            type="image/webp" fetchpriority="high">
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="http://localhost/assets/frontend/css/lib/bootstrap.min.css">
+        <link rel="stylesheet" href="http://localhost/assets/frontend/css/lib/main-swiper.min.css" />
+                    <link rel="stylesheet" href="http://localhost/assets/frontend/css/compress-css/main-style-V2.min.css" />
+        
+        <!-- Google Tag Manager -->
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-M7VMCGKZ');
+        </script>
+            <link rel="stylesheet" href="http://localhost/assets/frontend/css/compress-css/pages/seoCompany-V2.min.css" />
+    </head>

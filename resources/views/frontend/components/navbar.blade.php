@@ -50,7 +50,7 @@
                   </p>
                 </div>
 
-                <a href="/samplework/isearchnew/services.html" class="secondary-btn">
+                <a href="/services" class="secondary-btn">
                   Explore All Services
                 </a>
               </div>

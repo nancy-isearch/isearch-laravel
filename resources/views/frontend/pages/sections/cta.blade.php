@@ -6,10 +6,10 @@
   </div>
   <div class="container-fluid">
     <div class="cta-content">
-      <h2 id="cta-heading" class="cta-title heading-1">Ready to Scale Your Digital Footprint &amp; <span class="ac text-white text-opacity-75">Maximize ROI</span>?</h2>
-      <p class="cta-lead">Partner with our expert team to deploy data-driven strategies engineered to accelerate your revenue and market visibility.</p>
+      <h2 id="cta-heading" class="cta-title heading-1">{!! $content['heading'] ?? 'Ready to Scale Your Digital Footprint &amp; <span class="ac text-white text-opacity-75">Maximize ROI</span>?' !!}</h2>
+      <p class="cta-lead">{!! $content['description'] ?? 'Partner with our expert team to deploy data-driven strategies engineered to accelerate your revenue and market visibility.' !!}</p>
       <div class="cta-actions">
-        <button type="button" class="primary-btn openPopupBtn">Schedule a Discovery Call</button>
+        <a href="{{ $content['btn_link'] ?? '#' }}" class="primary-btn openPopupBtn">{{ $content['btn_text'] ?? 'Schedule a Discovery Call' }}</a>
       </div>
     </div>
   </div>

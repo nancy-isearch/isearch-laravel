@@ -1,15 +1,18 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    {{-- Push Dynamic CSS for sections --}}
+    {{-- Push Dynamic CSS for sections if individual file exists --}}
     @push('styles')
         @if($page->pageSections)
             @foreach($page->pageSections as $section)
                 @if($section->sectionTemplate)
                     @php
                         $slug = $section->sectionTemplate->slug;
+                        $cssPath = 'assets/frontend/css/pages/sections/' . $slug . '.css';
                     @endphp
-                    <link rel="stylesheet" href="{{ asset('assets/frontend/css/pages/sections/' . $slug . '.css') }}">
+                    @if(file_exists(public_path($cssPath)))
+                        <link rel="stylesheet" href="{{ asset($cssPath) }}">
+                    @endif
                 @endif
             @endforeach
         @endif

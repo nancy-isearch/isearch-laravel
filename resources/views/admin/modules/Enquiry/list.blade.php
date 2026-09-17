@@ -92,11 +92,11 @@
                 <table id="enquiryTable" @class(['table', 'display']) style="width:100%">
                     <thead>
                         <tr>
-                            <th><h6>Product</h6></th>
+                            <th><h6>Service</h6></th>
                             <th><h6>Name</h6></th>
                             <th><h6>Email</h6></th>
                             <th><h6>Phone</h6></th>
-                            <th><h6>City/Country</h6></th>
+                            <th><h6>Website URL</h6></th>
                             <th><h6>Status</h6></th>
                             <th><h6>Date</h6></th>
                             <th><h6>Action</h6></th>
@@ -144,7 +144,7 @@
                 {{-- Top row — product + status --}}
                 <div class="enq-modal__top-row">
                     <div class="enq-modal__field enq-modal__field--highlight">
-                        <span class="enq-modal__field-label"><i class="lni lni-package"></i> Product</span>
+                        <span class="enq-modal__field-label"><i class="lni lni-layers"></i> Service</span>
                         <span class="enq-modal__field-value" id="v_product">—</span>
                     </div>
                     <div class="enq-modal__field enq-modal__field--status">
@@ -172,28 +172,8 @@
                     </div>
 
                     <div class="enq-modal__field">
-                        <span class="enq-modal__field-label"><i class="lni lni-layers"></i> City/Country</span>
-                        <span class="enq-modal__field-value" id="v_country_city">—</span>
-                    </div>
-
-                    <div class="enq-modal__field">
-                        <span class="enq-modal__field-label"><i class="lni lni-ruler-alt"></i> Preferred Size</span>
-                        <span class="enq-modal__field-value" id="v_preferred_size">—</span>
-                    </div>
-
-                    <div class="enq-modal__field">
-                        <span class="enq-modal__field-label"><i class="lni lni-brush"></i> Preferred Finish</span>
-                        <span class="enq-modal__field-value" id="v_preferred_finish">—</span>
-                    </div>
-
-                    <div class="enq-modal__field">
-                        <span class="enq-modal__field-label"><i class="lni lni-target-customer"></i> Purpose</span>
-                        <span class="enq-modal__field-value" id="v_purpose">—</span>
-                    </div>
-
-                    <div class="enq-modal__field">
-                        <span class="enq-modal__field-label"><i class="lni lni-calendar"></i> Preferred Time</span>
-                        <span class="enq-modal__field-value" id="v_preferred_time">—</span>
+                        <span class="enq-modal__field-label"><i class="lni lni-link"></i> Website URL</span>
+                        <span class="enq-modal__field-value" id="v_url">—</span>
                     </div>
 
                 </div>
@@ -287,14 +267,14 @@
                     }
                 },
                 {
-                    data: 'country_city',
-                    name: 'country_city',
+                    data: 'url',
+                    name: 'url',
                     createdCell: function (td, cellData, rowData, row, col) {
                         $(td).addClass('min-width');
                     },
                     render: function(data) {
-                        if (!data) return '<span class="enq-cell-empty">—</span>';
-                        return `<span class="enq-program-badge">${data}</span>`;
+                        if (!data || data === 'NA') return '<span class="enq-cell-empty">—</span>';
+                        return `<span class="enq-program-badge"><a href="${data}" target="_blank">${data}</a></span>`;
                     }
                 },
                 {
@@ -382,12 +362,8 @@
                 $('#v_name').text(data.full_name);
                 $('#v_email').text(data.email);
                 $('#v_phone').text(data.phone);
-                $('#v_country_city').text(data.country_city ? data.country_city : 'NA');
+                $('#v_url').text(data.url !== 'NA' && data.url !== null ? data.url : 'NA');
                 $('#v_message').text(data.message ? data.message : 'NA');
-                $('#v_preferred_size').text(data.preferred_size ? data.preferred_size : 'NA');
-                $('#v_preferred_time').text(data.preferred_time ? data.preferred_time : 'NA');
-                $('#v_purpose').text(data.purpose ? data.purpose : 'NA');
-                $('#v_preferred_finish').text(data.preferred_finish ? data.preferred_finish : 'NA');
 
                 // Style status badge inside modal
                 let statusCls = '';
